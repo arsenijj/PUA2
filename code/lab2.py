@@ -1,4 +1,4 @@
-def matrix_set_view(matrix_set, flag=None):
+def print_matrix_set(matrix_set, flag=None):
     if not flag:
         print('Исходное отношение: {', end='')
         print(*matrix_set, sep=', ', end='}\n')
@@ -7,29 +7,34 @@ def matrix_set_view(matrix_set, flag=None):
         print(*matrix_set, sep=', ', end='; ')
 
 
-def print_factor(factor_set_res):
+def print_factor_set(factor_set_res):
     print('Фактор-множество множества A по эквивалентности \u03B5: {', end='')
     factor_set_res = [list(subset) for subset in factor_set_res]
     for subset in factor_set_res[:-1:]:
         print('{', end='')
-        print(*subset, sep=', ', end='}, ')
+        print(*sorted(subset), sep=', ', end='}, ')
     print('{', end='')
-    print(*factor_set_res[-1], sep=', ', end='}}\n')
+    print(*sorted(factor_set_res[-1]), sep=', ', end='}}\n')
 
 
 def factor_set(matrix, size):
-    classes = [[j + 1 for j, value in enumerate(matrix[i]) if value == 1]
-                                                for i in range(size)]
-    return set(frozenset(subset) for subset in classes)
+    classes = [[j + 1 for j, value in enumerate(matrix[i]) if value == 1] for i in range(size)]
+    return set(frozenset(subset) for subset in classes), classes
 
 
-def full_system_of_class_representatives(factor):
-    res = []
-    for subset in factor:
-        res.append(min(subset))
-    print('''Полная система представителей классов эквивалентности 
-             u03B5 на множестве A: T={', end=''''')
-    print(*res, sep=', ', end='}\u2282A\n')
+def full_system_of_class_representatives(factor, classes):
+    print('Полная система представителей классов эквивалентности \u03B5 на множестве A: T={', end='')
+    system = [min(subset) for subset in factor]
+    print(*system, sep=', ', end='} \u2282 A, где ')
+    eplison_numbers = []
+    for representative in system:
+        for i, class_ in enumerate(classes):
+            if representative in class_:
+                eplison_numbers.append(i + 1)
+                break
+    for i, number in enumerate(eplison_numbers[:-1:]):
+        print(f'{system[i]} \u2208 \u03B5({number}) = {classes[number - 1]}, ', end='')
+    print(f'{system[-1]} \u2208 \u03B5({eplison_numbers[-1]}) = {classes[eplison_numbers[-1] - 1]}')
 
 
 def make_equivalent_closure(copy, size, matrix_set):
@@ -97,8 +102,7 @@ def get_data():
     n = int(input())
     print(f'Введите построчно элементы матрицы (по {n})')
     m = [[int(elem) for elem in input().split()] for _ in range(n)]
-    m_set = [(i + 1, j + 1) for i in range(n) for j in range(n) if m[i][j] == 1]
-    return m, sorted(m_set), n
+    return m, sorted([(i + 1, j + 1) for i in range(n) for j in range(n) if m[i][j] == 1]), n
 
 
 def hasse_greater_eq(nums):
@@ -129,15 +133,10 @@ def hasse_division(dividers_num):
 
 
 def dividers(num, flag=False):
-    result = []
     begin = 1
     if flag:
         begin = 2
-    for i in range(begin, int(num / 2) + 1):
-        if num % i == 0:
-            result.append(i)
-    result.append(num)
-    return result
+    return [divider for divider in range(begin, int(num / 2) + 1) if not num % divider] + [num]
 
 
 def min_max_elements(lst):
@@ -167,7 +166,6 @@ def min_max_elements(lst):
         else:
             break
     print('\n')
-    return
 
 
 print('Вы хотите получить фактор-множество отношения и полную систему представителей классов? Да (1) или Нет (0)')
@@ -175,7 +173,7 @@ print('Вы хотите получить фактор-множество отн
 yes_or_no = int(input())
 if yes_or_no:
     matrix, matrix_set, size = get_data()
-    matrix_set_view(matrix_set)
+    print_matrix_set(matrix_set)
     print('\n')
     print('Cвойства бинарного отношения:')
     flagT = True
@@ -217,7 +215,7 @@ if yes_or_no:
         ls, mt = make_equivalent_closure(copy, size, matrix_set)
 
         print('Эквивалентное замыкание бинарного отношения: ', end='')
-        matrix_set_view(matrix_set, True)
+        print_matrix_set(matrix_set, True)
         print(*ls, sep=', ', end='}\n\n')
 
         print('Матрица эквивалентного замыкания бинарного отношения:')
@@ -225,9 +223,9 @@ if yes_or_no:
             print(*mt[i])
         print('\n')
 
-        factor_set_res = factor_set(matrix, size)
-        print_factor(factor_set_res)
-        full_system_of_class_representatives(factor_set_res)
+        factor_set_res, classes = factor_set(matrix, size)
+        print_factor_set(factor_set_res)
+        full_system_of_class_representatives(factor_set_res, classes)
 
     else:
         print('Заданное отношение является эквивалентным. Его матрица:')
@@ -235,13 +233,13 @@ if yes_or_no:
             print(*matrix[i])
         print('\n')
 
-        factor_set_res = factor_set(matrix, size)
-        print_factor(factor_set_res)
-        full_system_of_class_representatives(factor_set_res)
+        factor_set_res, classes = factor_set(matrix, size)
+        print_factor_set(factor_set_res)
+        full_system_of_class_representatives(factor_set_res, classes)
 
-print('''Вы хотите получить минимальные/наименьшие и максимальные/наибольшие 
-        элементы множества? Да (1) или Нет (0)''')
+print('Вы хотите получить минимальные/наименьшие и максимальные/наибольшие элементы множества? Да (1) или Нет (0)')
 yes_or_no = int(input())
+res = None
 if yes_or_no:
     print('Выберите тип задания множества: число (1) или заданное множество (2)')
     set_type = int(input())
@@ -252,7 +250,7 @@ if yes_or_no:
     if set_type == 1:
         print('Введите число')
         num = int(input())
-        print('Хотите ли добавить единицу во множество? Да(1), Нет(0)')
+        print('Хотите ли добавить единицу во множество? Да(1) или Нет(0)')
         yes_or_no = int(input())
         sub_res = None
         if yes_or_no == 1:
@@ -289,7 +287,6 @@ if yes_or_no:
             hv.visual(res, True)
         else:
             hv.visual(res)
-    print(res)
 
 '''
 Примеры входных данных:

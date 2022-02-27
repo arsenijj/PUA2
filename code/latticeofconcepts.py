@@ -1,26 +1,42 @@
 def make_nums_obj_attr(objects, attributes):
-    return {value: i for i, value in enumerate(objects)}, {value: i for i, value in enumerate(attributes)}
+    return {key: i for i, key in enumerate(objects)}, {key: i for i, key in enumerate(attributes)}
 
 
-def get_rho_minus_attr(matrix, size):
+def get_lattice_of_concepts(matrix, size, keys):
     closure_system = set()
+    subsets_attrs = dict()
+    all_subsets = set([i + 1 for i in range(size)])
     for i in range(size):
         new_subset = []
         for j in range(size):
             if matrix[j][i] == 1:
                 new_subset.append(j + 1)
         new_subset = frozenset(new_subset)
+        all_subsets = all_subsets.intersection(new_subset)
         if not closure_system:
             closure_system.add(new_subset)
+            subsets_attrs[keys[i]] = new_subset
         else:
-            sets = []
+            subsets = set()
             for subset in closure_system:
-                new_subset = frozenset(subset.intersection(new_subset))
-                sets.append(new_subset)
-            for subset in sets:
+                subsubset = frozenset(subset.intersection(new_subset))
+                if subsubset:
+                    for key, value in subsets_attrs.items():
+                        if value == subset:
+                            subsets_attrs[f'{key}, {keys[i]}'] = subsubset
+                            break
+                    subsets.add(subsubset)
+            for subset in subsets:
                 closure_system.add(subset)
-            closure_system.add(new_subset)
-    return closure_system
+            if new_subset not in closure_system:
+                closure_system.add(new_subset)
+                subsets_attrs[f'{keys[i]}'] = new_subset
+    set_for_g = '\u2205'
+    for key, value in subsets_attrs.items():
+        if all_subsets == value:
+            set_for_g = value
+            break
+    return subsets_attrs, f'(G, {set_for_g})'
 
 
 def get_matrix(size):
@@ -36,26 +52,30 @@ def print_matrix(mat, obj):
         print(symbols[i], end=' ')
         print(*mat[i])
 
-# print('Введите множество объектов')
-# obj = [int(value) for value in input().split()]
-#
-# print('Введите множество атрибутов')
-# attr = input().split()
-#
-# obj, attr = make_nums_obj_attr(obj, attr)
-#
-# mat = get_matrix(len(attr))
-#
-# print_matrix(mat, obj)
-# print(get_rho_minus_attr(mat, len(attr)))
 
-'''
-1 2 3 4
+def print_lattice_of_concepts(mat, attr):
+    print('Решетка концептов C(K) состоит из элементов: ', end='')
+    lattice_of_concepts, g = get_lattice_of_concepts(mat, len(attr), list(attr.keys()))
+    for key, value in lattice_of_concepts.items():
+        value = list(value)
+        print('({', end='')
+        print(*value, sep=',', end='},')
+        print('{' + key + '}', end='), ')
 
-a b c d
+    print(g, end=', ')
+    print('(\u2205, M)')
 
-1 0 1 0
-1 1 0 0
-0 1 0 1
-0 1 0 1
-'''
+
+def main():
+    print('Введите множество объектов')
+    obj = [int(value) for value in input().split()]
+
+    print('Введите множество атрибутов')
+    attr = input().split()
+
+    obj, attr = make_nums_obj_attr(obj, attr)
+
+    mat = get_matrix(len(attr))
+
+    print_matrix(mat, obj)
+    print_lattice_of_concepts(mat, attr)

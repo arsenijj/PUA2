@@ -169,7 +169,6 @@ def min_max_elements(lst):
 
 
 print('Вы хотите получить фактор-множество отношения и полную систему представителей классов? Да (1) или Нет (0)')
-
 yes_or_no = int(input())
 if yes_or_no:
     matrix, matrix_set, size = get_data()
@@ -214,8 +213,7 @@ if yes_or_no:
         copy = matrix
         ls, mt = make_equivalent_closure(copy, size, matrix_set)
 
-        print('Эквивалентное замыкание бинарного отношения: ', end='')
-        print_matrix_set(matrix_set, True)
+        print('Эквивалентное замыкание бинарного отношения: {', end='')
         print(*ls, sep=', ', end='}\n\n')
 
         print('Матрица эквивалентного замыкания бинарного отношения:')
@@ -237,6 +235,7 @@ if yes_or_no:
         print_factor_set(factor_set_res)
         full_system_of_class_representatives(factor_set_res, classes)
 
+
 print('Вы хотите получить минимальные/наименьшие и максимальные/наибольшие элементы множества? Да (1) или Нет (0)')
 yes_or_no = int(input())
 res = None
@@ -250,7 +249,7 @@ if yes_or_no:
     if set_type == 1:
         print('Введите число')
         num = int(input())
-        print('Хотите ли добавить единицу во множество? Да(1) или Нет(0)')
+        print('Хотите ли добавить единицу во множество? Да(1), Нет(0)')
         yes_or_no = int(input())
         sub_res = None
         if yes_or_no == 1:
@@ -282,14 +281,20 @@ if yes_or_no:
     print('Вы хотите получить диаграмму Хассе? Да(1) или Нет(0)')
     yes_or_no = int(input())
     if yes_or_no:
-        import hassevisualization as hv
+        import hasse_visualization as hv
         if order_type == 1:
             hv.visual(res, True)
         else:
             hv.visual(res)
+    print(res)
 
+print('Вы хотите получить элементы решетки концептов C(K)? Да (1) или Нет (0)')
+yes_or_no = int(input())
+if yes_or_no:
+    import lattice_of_concepts as lc
+    lc.main()
 '''
-Примеры входных данных:
+Примеры входных данных для 1-ой части работы:
 
 3 
 0 1 0
@@ -318,4 +323,27 @@ if yes_or_no:
 0 0 0 0 0 1 1 1
 0 0 0 0 0 1 1 0
 0 0 0 0 0 1 1 1
+
+Примеры входных данных для 2-ой части работы:
+
+1
+2
+30
+1
+1
+
+2
+2
+2 3 21 15 14 4 8 30 16 32
+1
+
+Пример входных данных для 3-ей части работы:
+1 2 3 4
+
+a b c d
+
+1 0 1 0
+1 1 0 0
+0 1 0 1
+0 1 0 1
 '''

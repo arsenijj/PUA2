@@ -1,0 +1,351 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{print\PYGZus{}matrix\PYGZus{}set}\PYG{p}{(}\PYG{n}{matrix\PYGZus{}set}\PYG{p}{,} \PYG{n}{flag}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{):}
+    \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{flag}\PYG{p}{:}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Исходное отношение: \PYGZob{}\PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{)}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{o}{*}\PYG{n}{matrix\PYGZus{}set}\PYG{p}{,} \PYG{n}{sep}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}, \PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZcb{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{k}{else}\PYG{p}{:}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}\PYGZob{}\PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{)}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{o}{*}\PYG{n}{matrix\PYGZus{}set}\PYG{p}{,} \PYG{n}{sep}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}, \PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}; \PYGZsq{}}\PYG{p}{)}
+
+
+\PYG{k}{def} \PYG{n+nf}{print\PYGZus{}factor\PYGZus{}set}\PYG{p}{(}\PYG{n}{factor\PYGZus{}set\PYGZus{}res}\PYG{p}{):}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Фактор\PYGZhy{}множество множества A по эквивалентности }\PYG{l+s+se}{\PYGZbs{}u03B5}\PYG{l+s+s1}{: \PYGZob{}\PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{factor\PYGZus{}set\PYGZus{}res} \PYG{o}{=} \PYG{p}{[}\PYG{n+nb}{list}\PYG{p}{(}\PYG{n}{subset}\PYG{p}{)} \PYG{k}{for} \PYG{n}{subset} \PYG{o+ow}{in} \PYG{n}{factor\PYGZus{}set\PYGZus{}res}\PYG{p}{]}
+    \PYG{k}{for} \PYG{n}{subset} \PYG{o+ow}{in} \PYG{n}{factor\PYGZus{}set\PYGZus{}res}\PYG{p}{[:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{:]:}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}\PYGZob{}\PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{)}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{o}{*}\PYG{n+nb}{sorted}\PYG{p}{(}\PYG{n}{subset}\PYG{p}{),} \PYG{n}{sep}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}, \PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZcb{}, \PYGZsq{}}\PYG{p}{)}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}\PYGZob{}\PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{)}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{o}{*}\PYG{n+nb}{sorted}\PYG{p}{(}\PYG{n}{factor\PYGZus{}set\PYGZus{}res}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]),} \PYG{n}{sep}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}, \PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZcb{}\PYGZcb{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+
+\PYG{k}{def} \PYG{n+nf}{factor\PYGZus{}set}\PYG{p}{(}\PYG{n}{matrix}\PYG{p}{,} \PYG{n}{size}\PYG{p}{):}
+    \PYG{n}{classes} \PYG{o}{=} \PYG{p}{[[}\PYG{n}{j} \PYG{o}{+} \PYG{l+m+mi}{1} \PYG{k}{for} \PYG{n}{j}\PYG{p}{,} \PYG{n}{value} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{matrix}\PYG{p}{[}\PYG{n}{i}\PYG{p}{])} \PYG{k}{if} \PYG{n}{value} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{]} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{)]}
+    \PYG{k}{return} \PYG{n+nb}{set}\PYG{p}{(}\PYG{n+nb}{frozenset}\PYG{p}{(}\PYG{n}{subset}\PYG{p}{)} \PYG{k}{for} \PYG{n}{subset} \PYG{o+ow}{in} \PYG{n}{classes}\PYG{p}{),} \PYG{n}{classes}
+
+
+\PYG{k}{def} \PYG{n+nf}{full\PYGZus{}system\PYGZus{}of\PYGZus{}class\PYGZus{}representatives}\PYG{p}{(}\PYG{n}{factor}\PYG{p}{,} \PYG{n}{classes}\PYG{p}{):}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Полная система представителей классов эквивалентности }\PYG{l+s+se}{\PYGZbs{}u03B5}\PYG{l+s+s1}{ на множестве A: T=\PYGZob{}\PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{system} \PYG{o}{=} \PYG{p}{[}\PYG{n+nb}{min}\PYG{p}{(}\PYG{n}{subset}\PYG{p}{)} \PYG{k}{for} \PYG{n}{subset} \PYG{o+ow}{in} \PYG{n}{factor}\PYG{p}{]}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{o}{*}\PYG{n}{system}\PYG{p}{,} \PYG{n}{sep}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}, \PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZcb{} }\PYG{l+s+se}{\PYGZbs{}u2282}\PYG{l+s+s1}{ A, где \PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{eplison\PYGZus{}numbers} \PYG{o}{=} \PYG{p}{[]}
+    \PYG{k}{for} \PYG{n}{representative} \PYG{o+ow}{in} \PYG{n}{system}\PYG{p}{:}
+        \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{class\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{classes}\PYG{p}{):}
+            \PYG{k}{if} \PYG{n}{representative} \PYG{o+ow}{in} \PYG{n}{class\PYGZus{}}\PYG{p}{:}
+                \PYG{n}{eplison\PYGZus{}numbers}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{i} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{)}
+                \PYG{k}{break}
+    \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{number} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{eplison\PYGZus{}numbers}\PYG{p}{[:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{:]):}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{system}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{ }\PYG{l+s+se}{\PYGZbs{}u2208}\PYG{l+s+s1}{ }\PYG{l+s+se}{\PYGZbs{}u03B5}\PYG{l+s+s1}{(}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{number}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{) = }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{classes}\PYG{p}{[}\PYG{n}{number} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{, \PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{)}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{system}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{ }\PYG{l+s+se}{\PYGZbs{}u2208}\PYG{l+s+s1}{ }\PYG{l+s+se}{\PYGZbs{}u03B5}\PYG{l+s+s1}{(}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{eplison\PYGZus{}numbers}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{) = }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{classes}\PYG{p}{[}\PYG{n}{eplison\PYGZus{}numbers}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+
+\PYG{k}{def} \PYG{n+nf}{make\PYGZus{}equivalent\PYGZus{}closure}\PYG{p}{(}\PYG{n}{copy}\PYG{p}{,} \PYG{n}{size}\PYG{p}{,} \PYG{n}{matrix\PYGZus{}set}\PYG{p}{):}
+
+    \PYG{k}{for} \PYG{n}{u} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{):}
+        \PYG{k}{if} \PYG{n}{copy}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{u}\PYG{p}{]} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{:}
+            \PYG{n}{copy}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{1}
+        \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{):}
+            \PYG{k}{if} \PYG{n}{copy}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{k}\PYG{p}{]} \PYG{o+ow}{and} \PYG{o+ow}{not} \PYG{n}{copy}\PYG{p}{[}\PYG{n}{k}\PYG{p}{][}\PYG{n}{u}\PYG{p}{]:}
+                \PYG{n}{copy}\PYG{p}{[}\PYG{n}{k}\PYG{p}{][}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{1}
+            \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{):}
+                \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{):}
+                    \PYG{k}{if} \PYG{n}{copy}\PYG{p}{[}\PYG{n}{k}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]} \PYG{o}{==} \PYG{n}{copy}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]} \PYG{o}{==} \PYG{l+m+mi}{1} \PYG{o+ow}{and} \PYG{n}{copy}\PYG{p}{[}\PYG{n}{k}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{:}
+                        \PYG{n}{copy}\PYG{p}{[}\PYG{n}{k}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{1}
+
+    \PYG{k}{return} \PYG{p}{[(}\PYG{n}{i} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{j} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{)} \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{)}
+            \PYG{k}{if} \PYG{n}{copy}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]} \PYG{o+ow}{and} \PYG{p}{(}\PYG{n}{i} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{j} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o+ow}{not} \PYG{o+ow}{in} \PYG{n}{matrix\PYGZus{}set}\PYG{p}{],} \PYG{n}{copy}
+
+
+\PYG{k}{def} \PYG{n+nf}{is\PYGZus{}transitive}\PYG{p}{(}\PYG{n}{matrix}\PYG{p}{,} \PYG{n}{size}\PYG{p}{):}
+
+    \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{):}
+        \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{):}
+            \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{):}
+                \PYG{k}{if} \PYG{n}{matrix}\PYG{p}{[}\PYG{n}{k}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]} \PYG{o}{==} \PYG{n}{matrix}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]} \PYG{o}{==} \PYG{l+m+mi}{1} \PYG{o+ow}{and} \PYG{n}{matrix}\PYG{p}{[}\PYG{n}{k}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{:}
+                    \PYG{k}{return} \PYG{k+kc}{False}
+    \PYG{k}{return} \PYG{k+kc}{True}
+
+
+\PYG{k}{def} \PYG{n+nf}{is\PYGZus{}symmetric\PYGZus{}or\PYGZus{}antisymmetric}\PYG{p}{(}\PYG{n}{matrix}\PYG{p}{,} \PYG{n}{size}\PYG{p}{):}
+
+    \PYG{n}{flag\PYGZus{}symmetric} \PYG{o}{=} \PYG{k+kc}{True}
+    \PYG{n}{flag\PYGZus{}antisymmetric} \PYG{o}{=} \PYG{k+kc}{True}
+
+    \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{):}
+        \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{):}
+            \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{matrix}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]} \PYG{o}{==} \PYG{n}{matrix}\PYG{p}{[}\PYG{n}{j}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]:}
+                \PYG{n}{flag\PYGZus{}symmetric} \PYG{o}{=} \PYG{k+kc}{False}
+            \PYG{k}{if} \PYG{n}{matrix}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]} \PYG{o}{==} \PYG{n}{matrix}\PYG{p}{[}\PYG{n}{j}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]} \PYG{o}{==} \PYG{l+m+mi}{1} \PYG{o+ow}{and} \PYG{o+ow}{not} \PYG{n}{i} \PYG{o}{==} \PYG{n}{j}\PYG{p}{:}
+                \PYG{n}{flag\PYGZus{}antisymmetric} \PYG{o}{=} \PYG{k+kc}{False}
+            \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{flag\PYGZus{}symmetric} \PYG{o+ow}{and} \PYG{o+ow}{not} \PYG{n}{flag\PYGZus{}antisymmetric}\PYG{p}{:}
+                \PYG{k}{return} \PYG{k+kc}{False}\PYG{p}{,} \PYG{k+kc}{False}
+
+    \PYG{k}{return} \PYG{n}{flag\PYGZus{}symmetric}\PYG{p}{,} \PYG{n}{flag\PYGZus{}antisymmetric}
+
+
+\PYG{k}{def} \PYG{n+nf}{is\PYGZus{}reflexive\PYGZus{}or\PYGZus{}anti\PYGZus{}reflexive}\PYG{p}{(}\PYG{n}{matrix}\PYG{p}{,} \PYG{n}{size}\PYG{p}{):}
+
+    \PYG{n}{flag\PYGZus{}reflexive} \PYG{o}{=} \PYG{k+kc}{True}
+    \PYG{n}{flag\PYGZus{}anti\PYGZus{}reflexive} \PYG{o}{=} \PYG{k+kc}{True}
+
+    \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{):}
+        \PYG{k}{if} \PYG{n}{matrix}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{:}
+            \PYG{n}{flag\PYGZus{}reflexive} \PYG{o}{=} \PYG{k+kc}{False}
+        \PYG{k}{elif} \PYG{n}{matrix}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{:}
+            \PYG{n}{flag\PYGZus{}anti\PYGZus{}reflexive} \PYG{o}{=} \PYG{k+kc}{False}
+        \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{flag\PYGZus{}reflexive} \PYG{o+ow}{and} \PYG{o+ow}{not} \PYG{n}{flag\PYGZus{}anti\PYGZus{}reflexive}\PYG{p}{:}
+            \PYG{k}{return} \PYG{k+kc}{False}\PYG{p}{,} \PYG{k+kc}{False}
+
+    \PYG{k}{return} \PYG{n}{flag\PYGZus{}reflexive}\PYG{p}{,} \PYG{n}{flag\PYGZus{}anti\PYGZus{}reflexive}
+
+
+\PYG{k}{def} \PYG{n+nf}{get\PYGZus{}data}\PYG{p}{():}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Введите размер матрицы:\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{n} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n+nb}{input}\PYG{p}{())}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}Введите построчно элементы матрицы (по }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{n}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{)\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{m} \PYG{o}{=} \PYG{p}{[[}\PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{elem}\PYG{p}{)} \PYG{k}{for} \PYG{n}{elem} \PYG{o+ow}{in} \PYG{n+nb}{input}\PYG{p}{()}\PYG{o}{.}\PYG{n}{split}\PYG{p}{()]} \PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{n}\PYG{p}{)]}
+    \PYG{k}{return} \PYG{n}{m}\PYG{p}{,} \PYG{n+nb}{sorted}\PYG{p}{([(}\PYG{n}{i} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{j} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{n}\PYG{p}{)} \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{n}\PYG{p}{)} \PYG{k}{if} \PYG{n}{m}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{]),} \PYG{n}{n}
+
+
+\PYG{k}{def} \PYG{n+nf}{hasse\PYGZus{}greater\PYGZus{}eq}\PYG{p}{(}\PYG{n}{nums}\PYG{p}{):}
+    \PYG{n}{res} \PYG{o}{=} \PYG{p}{[]}
+    \PYG{n}{res}\PYG{o}{.}\PYG{n}{append}\PYG{p}{((}\PYG{n}{nums}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{p}{[]))}
+    \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{num} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{nums}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{:]):}
+        \PYG{n}{res}\PYG{o}{.}\PYG{n}{append}\PYG{p}{((}\PYG{n}{num}\PYG{p}{,} \PYG{n}{res}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{p}{[}\PYG{n}{res}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]]))}
+    \PYG{k}{return} \PYG{n}{res}
+
+
+\PYG{k}{def} \PYG{n+nf}{hasse\PYGZus{}division}\PYG{p}{(}\PYG{n}{dividers\PYGZus{}num}\PYG{p}{):}
+    \PYG{n}{hasse\PYGZus{}list} \PYG{o}{=} \PYG{p}{[]}
+    \PYG{n}{sl} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{n}{key}\PYG{p}{:} \PYG{l+m+mi}{1} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{key} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{dividers\PYGZus{}num}\PYG{p}{)\PYGZcb{}}
+
+    \PYG{k}{for} \PYG{n}{number} \PYG{o+ow}{in} \PYG{n}{dividers\PYGZus{}num}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{:]:}
+        \PYG{k}{for} \PYG{n}{divider} \PYG{o+ow}{in} \PYG{n}{dividers\PYGZus{}num}\PYG{p}{[:}\PYG{n}{dividers\PYGZus{}num}\PYG{o}{.}\PYG{n}{index}\PYG{p}{(}\PYG{n}{number}\PYG{p}{)]:}
+            \PYG{k}{if} \PYG{n}{number} \PYG{o}{\PYGZpc{}} \PYG{n}{divider} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{:}
+                \PYG{n}{sl}\PYG{p}{[}\PYG{n}{number}\PYG{p}{]} \PYG{o}{=} \PYG{n}{sl}\PYG{p}{[}\PYG{n}{divider}\PYG{p}{]} \PYG{o}{+} \PYG{l+m+mi}{1}
+
+    \PYG{k}{for} \PYG{n}{k}\PYG{p}{,} \PYG{n}{v} \PYG{o+ow}{in} \PYG{n}{sl}\PYG{o}{.}\PYG{n}{items}\PYG{p}{():}
+        \PYG{n}{pod\PYGZus{}res} \PYG{o}{=} \PYG{p}{[]}
+        \PYG{k}{for} \PYG{n}{k1}\PYG{p}{,} \PYG{n}{v1} \PYG{o+ow}{in} \PYG{n}{sl}\PYG{o}{.}\PYG{n}{items}\PYG{p}{():}
+            \PYG{k}{if} \PYG{n}{v1} \PYG{o}{+} \PYG{l+m+mi}{1} \PYG{o}{==} \PYG{n}{v} \PYG{o+ow}{and} \PYG{n}{k} \PYG{o}{\PYGZpc{}} \PYG{n}{k1} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{:}
+                \PYG{n}{pod\PYGZus{}res}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{k1}\PYG{p}{)}
+        \PYG{n}{hasse\PYGZus{}list}\PYG{o}{.}\PYG{n}{append}\PYG{p}{((}\PYG{n}{k}\PYG{p}{,} \PYG{n}{v}\PYG{p}{,} \PYG{n}{pod\PYGZus{}res}\PYG{p}{))}
+    \PYG{n}{hasse\PYGZus{}list}\PYG{o}{.}\PYG{n}{sort}\PYG{p}{(}\PYG{n}{key}\PYG{o}{=}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{n}{x}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{])}
+    \PYG{k}{return} \PYG{n}{hasse\PYGZus{}list}
+
+
+\PYG{k}{def} \PYG{n+nf}{dividers}\PYG{p}{(}\PYG{n}{num}\PYG{p}{,} \PYG{n}{flag}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{):}
+    \PYG{n}{begin} \PYG{o}{=} \PYG{l+m+mi}{1}
+    \PYG{k}{if} \PYG{n}{flag}\PYG{p}{:}
+        \PYG{n}{begin} \PYG{o}{=} \PYG{l+m+mi}{2}
+    \PYG{k}{return} \PYG{p}{[}\PYG{n}{divider} \PYG{k}{for} \PYG{n}{divider} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{begin}\PYG{p}{,} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{num} \PYG{o}{/} \PYG{l+m+mi}{2}\PYG{p}{)} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{num} \PYG{o}{\PYGZpc{}} \PYG{n}{divider}\PYG{p}{]} \PYG{o}{+} \PYG{p}{[}\PYG{n}{num}\PYG{p}{]}
+
+
+\PYG{k}{def} \PYG{n+nf}{min\PYGZus{}max\PYGZus{}elements}\PYG{p}{(}\PYG{n}{lst}\PYG{p}{):}
+    \PYG{k}{if} \PYG{n}{lst}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{==} \PYG{n}{lst}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{]:}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Наименьшего элемента в данном множестве нет\PYGZsq{}}\PYG{p}{)}
+    \PYG{k}{else}\PYG{p}{:}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}Наименьший элемент множества: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{lst}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+    \PYG{k}{if} \PYG{n}{lst}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{==} \PYG{n}{lst}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{]:}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Наибольшего элемента в данном множестве нет\PYGZsq{}}\PYG{p}{)}
+    \PYG{k}{else}\PYG{p}{:}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}Наибольший элемент множества: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{lst}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}Минимальные элементы множества: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{lst}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{, \PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{minimum} \PYG{o}{=} \PYG{n}{lst}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{]}
+    \PYG{k}{for} \PYG{n}{values} \PYG{o+ow}{in} \PYG{n}{lst}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{:]:}
+        \PYG{k}{if} \PYG{n}{values}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{==} \PYG{n}{minimum}\PYG{p}{:}
+            \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{values}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}, \PYGZsq{}}\PYG{p}{)}
+        \PYG{k}{else}\PYG{p}{:}
+            \PYG{k}{break}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}Максимальные элементы множества: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{lst}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{, \PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{maximum} \PYG{o}{=} \PYG{n}{lst}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{]}
+    \PYG{k}{for} \PYG{n}{values} \PYG{o+ow}{in} \PYG{n}{lst}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{::}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]:}
+        \PYG{k}{if} \PYG{n}{values}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{==} \PYG{n}{maximum}\PYG{p}{:}
+            \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{values}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}, \PYGZsq{}}\PYG{p}{)}
+        \PYG{k}{else}\PYG{p}{:}
+            \PYG{k}{break}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Вы хотите получить фактор\PYGZhy{}множество отношения и полную систему представителей классов? Да (1) или Нет (0)\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{yes\PYGZus{}or\PYGZus{}no} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n+nb}{input}\PYG{p}{())}
+\PYG{k}{if} \PYG{n}{yes\PYGZus{}or\PYGZus{}no}\PYG{p}{:}
+    \PYG{n}{matrix}\PYG{p}{,} \PYG{n}{matrix\PYGZus{}set}\PYG{p}{,} \PYG{n}{size} \PYG{o}{=} \PYG{n}{get\PYGZus{}data}\PYG{p}{()}
+    \PYG{n}{print\PYGZus{}matrix\PYGZus{}set}\PYG{p}{(}\PYG{n}{matrix\PYGZus{}set}\PYG{p}{)}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Cвойства бинарного отношения:\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{flagT} \PYG{o}{=} \PYG{k+kc}{True}
+    \PYG{n}{flagR} \PYG{o}{=} \PYG{k+kc}{True}
+    \PYG{n}{flagS} \PYG{o}{=} \PYG{k+kc}{True}
+
+    \PYG{k}{if} \PYG{n}{is\PYGZus{}transitive}\PYG{p}{(}\PYG{n}{matrix}\PYG{p}{,} \PYG{n}{size}\PYG{p}{):}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Отношение является транзитивным\PYGZsq{}}\PYG{p}{)}
+    \PYG{k}{else}\PYG{p}{:}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Отношение не является транзитивным\PYGZsq{}}\PYG{p}{)}
+        \PYG{n}{flagT} \PYG{o}{=} \PYG{k+kc}{False}
+
+    \PYG{n}{symm}\PYG{p}{,} \PYG{n}{\PYGZus{}} \PYG{o}{=} \PYG{n}{is\PYGZus{}symmetric\PYGZus{}or\PYGZus{}antisymmetric}\PYG{p}{(}\PYG{n}{matrix}\PYG{p}{,}\PYG{n}{size}\PYG{p}{)}
+    \PYG{k}{if} \PYG{n}{symm}\PYG{p}{:}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Отношение является симметричным\PYGZsq{}}\PYG{p}{)}
+    \PYG{k}{else}\PYG{p}{:}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Отношение не является симметричным\PYGZsq{}}\PYG{p}{)}
+        \PYG{n}{flagS} \PYG{o}{=} \PYG{k+kc}{False}
+
+    \PYG{n}{refl}\PYG{p}{,} \PYG{n}{\PYGZus{}} \PYG{o}{=} \PYG{n}{is\PYGZus{}reflexive\PYGZus{}or\PYGZus{}anti\PYGZus{}reflexive}\PYG{p}{(}\PYG{n}{matrix}\PYG{p}{,} \PYG{n}{size}\PYG{p}{)}
+    \PYG{k}{if} \PYG{n}{refl}\PYG{p}{:}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Отношение является рефлексивным\PYGZsq{}}\PYG{p}{)}
+    \PYG{k}{else}\PYG{p}{:}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Отношение не является рефлексивным\PYGZsq{}}\PYG{p}{)}
+        \PYG{n}{flagR} \PYG{o}{=} \PYG{k+kc}{False}
+
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{flagS} \PYG{o+ow}{or} \PYG{o+ow}{not} \PYG{n}{flagR} \PYG{o+ow}{or} \PYG{o+ow}{not} \PYG{n}{flagT}\PYG{p}{:}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Так как отношение не обладает свойством \PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{)}
+        \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{flagS}\PYG{p}{:}
+            \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}симметричности\PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}, \PYGZsq{}}\PYG{p}{)}
+        \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{flagT}\PYG{p}{:}
+            \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}транзитивности\PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}, \PYGZsq{}}\PYG{p}{)}
+        \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{flagR}\PYG{p}{:}
+            \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}рефлексивности\PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}, \PYGZsq{}}\PYG{p}{)}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}то для получения фактор\PYGZhy{}множества отношения, требуется построить эквивалентное замыкание.\PYGZsq{}}\PYG{p}{)}
+
+        \PYG{n}{copy} \PYG{o}{=} \PYG{n}{matrix}
+        \PYG{n}{ls}\PYG{p}{,} \PYG{n}{mt} \PYG{o}{=} \PYG{n}{make\PYGZus{}equivalent\PYGZus{}closure}\PYG{p}{(}\PYG{n}{copy}\PYG{p}{,} \PYG{n}{size}\PYG{p}{,} \PYG{n}{matrix\PYGZus{}set}\PYG{p}{)}
+
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Эквивалентное замыкание бинарного отношения: \PYGZob{}\PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{)}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{o}{*}\PYG{n}{ls}\PYG{p}{,} \PYG{n}{sep}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}, \PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZcb{}}\PYG{l+s+se}{\PYGZbs{}n\PYGZbs{}n}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Матрица эквивалентного замыкания бинарного отношения:\PYGZsq{}}\PYG{p}{)}
+        \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{mt}\PYG{p}{)):}
+            \PYG{n+nb}{print}\PYG{p}{(}\PYG{o}{*}\PYG{n}{mt}\PYG{p}{[}\PYG{n}{i}\PYG{p}{])}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+        \PYG{n}{factor\PYGZus{}set\PYGZus{}res}\PYG{p}{,} \PYG{n}{classes} \PYG{o}{=} \PYG{n}{factor\PYGZus{}set}\PYG{p}{(}\PYG{n}{matrix}\PYG{p}{,} \PYG{n}{size}\PYG{p}{)}
+        \PYG{n}{print\PYGZus{}factor\PYGZus{}set}\PYG{p}{(}\PYG{n}{factor\PYGZus{}set\PYGZus{}res}\PYG{p}{)}
+        \PYG{n}{full\PYGZus{}system\PYGZus{}of\PYGZus{}class\PYGZus{}representatives}\PYG{p}{(}\PYG{n}{factor\PYGZus{}set\PYGZus{}res}\PYG{p}{,} \PYG{n}{classes}\PYG{p}{)}
+
+    \PYG{k}{else}\PYG{p}{:}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Заданное отношение является эквивалентным. Его матрица:\PYGZsq{}}\PYG{p}{)}
+        \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{matrix}\PYG{p}{)):}
+            \PYG{n+nb}{print}\PYG{p}{(}\PYG{o}{*}\PYG{n}{matrix}\PYG{p}{[}\PYG{n}{i}\PYG{p}{])}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+        \PYG{n}{factor\PYGZus{}set\PYGZus{}res}\PYG{p}{,} \PYG{n}{classes} \PYG{o}{=} \PYG{n}{factor\PYGZus{}set}\PYG{p}{(}\PYG{n}{matrix}\PYG{p}{,} \PYG{n}{size}\PYG{p}{)}
+        \PYG{n}{print\PYGZus{}factor\PYGZus{}set}\PYG{p}{(}\PYG{n}{factor\PYGZus{}set\PYGZus{}res}\PYG{p}{)}
+        \PYG{n}{full\PYGZus{}system\PYGZus{}of\PYGZus{}class\PYGZus{}representatives}\PYG{p}{(}\PYG{n}{factor\PYGZus{}set\PYGZus{}res}\PYG{p}{,} \PYG{n}{classes}\PYG{p}{)}
+
+
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Вы хотите получить минимальные/наименьшие и максимальные/наибольшие элементы множества? Да (1) или Нет (0)\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{yes\PYGZus{}or\PYGZus{}no} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n+nb}{input}\PYG{p}{())}
+\PYG{n}{res} \PYG{o}{=} \PYG{k+kc}{None}
+\PYG{k}{if} \PYG{n}{yes\PYGZus{}or\PYGZus{}no}\PYG{p}{:}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Выберите тип задания множества: число (1) или заданное множество (2)\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{set\PYGZus{}type} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n+nb}{input}\PYG{p}{())}
+
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Выберете тип порядка: \PYGZlt{}= (1) или отношение делимости (2)\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{order\PYGZus{}type} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n+nb}{input}\PYG{p}{())}
+
+    \PYG{k}{if} \PYG{n}{set\PYGZus{}type} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{:}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Введите число\PYGZsq{}}\PYG{p}{)}
+        \PYG{n}{num} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n+nb}{input}\PYG{p}{())}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Хотите ли добавить единицу во множество? Да(1), Нет(0)\PYGZsq{}}\PYG{p}{)}
+        \PYG{n}{yes\PYGZus{}or\PYGZus{}no} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n+nb}{input}\PYG{p}{())}
+        \PYG{n}{sub\PYGZus{}res} \PYG{o}{=} \PYG{k+kc}{None}
+        \PYG{k}{if} \PYG{n}{yes\PYGZus{}or\PYGZus{}no} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{:}
+            \PYG{k}{if} \PYG{n}{order\PYGZus{}type} \PYG{o}{==} \PYG{l+m+mi}{2}\PYG{p}{:}
+                \PYG{n}{sub\PYGZus{}res} \PYG{o}{=} \PYG{n}{dividers}\PYG{p}{(}\PYG{n}{num}\PYG{p}{)}
+                \PYG{n}{res} \PYG{o}{=} \PYG{n}{hasse\PYGZus{}division}\PYG{p}{(}\PYG{n}{sub\PYGZus{}res}\PYG{p}{)}
+            \PYG{k}{else}\PYG{p}{:}
+                \PYG{n}{sub\PYGZus{}res} \PYG{o}{=} \PYG{p}{[}\PYG{n}{i} \PYG{o}{+} \PYG{l+m+mi}{1} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{num}\PYG{p}{)]}
+                \PYG{n}{res} \PYG{o}{=} \PYG{n}{hasse\PYGZus{}greater\PYGZus{}eq}\PYG{p}{(}\PYG{n}{sub\PYGZus{}res}\PYG{p}{)}
+        \PYG{k}{else}\PYG{p}{:}
+            \PYG{k}{if} \PYG{n}{order\PYGZus{}type} \PYG{o}{==} \PYG{l+m+mi}{2}\PYG{p}{:}
+                \PYG{n}{sub\PYGZus{}res} \PYG{o}{=} \PYG{n}{dividers}\PYG{p}{(}\PYG{n}{num}\PYG{p}{,} \PYG{k+kc}{True}\PYG{p}{)}
+                \PYG{n}{res} \PYG{o}{=} \PYG{n}{hasse\PYGZus{}division}\PYG{p}{(}\PYG{n}{sub\PYGZus{}res}\PYG{p}{)}
+            \PYG{k}{else}\PYG{p}{:}
+                \PYG{n}{sub\PYGZus{}res} \PYG{o}{=} \PYG{p}{[}\PYG{n}{i} \PYG{o}{+} \PYG{l+m+mi}{2} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{num} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{)]}
+                \PYG{n}{res} \PYG{o}{=} \PYG{n}{hasse\PYGZus{}greater\PYGZus{}eq}\PYG{p}{(}\PYG{n}{sub\PYGZus{}res}\PYG{p}{)}
+    \PYG{k}{else}\PYG{p}{:}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Введите множество\PYGZsq{}}\PYG{p}{)}
+        \PYG{n}{num} \PYG{o}{=} \PYG{p}{[}\PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{value}\PYG{p}{)} \PYG{k}{for} \PYG{n}{value} \PYG{o+ow}{in} \PYG{n+nb}{input}\PYG{p}{()}\PYG{o}{.}\PYG{n}{split}\PYG{p}{()]}
+        \PYG{n}{num} \PYG{o}{=} \PYG{n+nb}{list}\PYG{p}{(}\PYG{n+nb}{set}\PYG{p}{(}\PYG{n}{num}\PYG{p}{))}
+        \PYG{n}{num}\PYG{o}{.}\PYG{n}{sort}\PYG{p}{()}
+
+        \PYG{k}{if} \PYG{n}{order\PYGZus{}type} \PYG{o}{==} \PYG{l+m+mi}{2}\PYG{p}{:}
+            \PYG{n}{res} \PYG{o}{=} \PYG{n}{hasse\PYGZus{}division}\PYG{p}{(}\PYG{n}{num}\PYG{p}{)}
+        \PYG{k}{elif} \PYG{n}{order\PYGZus{}type} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{:}
+            \PYG{n}{res} \PYG{o}{=} \PYG{n}{hasse\PYGZus{}greater\PYGZus{}eq}\PYG{p}{(}\PYG{n}{num}\PYG{p}{)}
+
+    \PYG{n}{min\PYGZus{}max\PYGZus{}elements}\PYG{p}{(}\PYG{n}{res}\PYG{p}{)}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Вы хотите получить диаграмму Хассе? Да(1) или Нет(0)\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{yes\PYGZus{}or\PYGZus{}no} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n+nb}{input}\PYG{p}{())}
+    \PYG{k}{if} \PYG{n}{yes\PYGZus{}or\PYGZus{}no}\PYG{p}{:}
+        \PYG{k+kn}{import} \PYG{n+nn}{hasse\PYGZus{}visualization} \PYG{k}{as} \PYG{n+nn}{hv}
+        \PYG{k}{if} \PYG{n}{order\PYGZus{}type} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{:}
+            \PYG{n}{hv}\PYG{o}{.}\PYG{n}{visual}\PYG{p}{(}\PYG{n}{res}\PYG{p}{,} \PYG{k+kc}{True}\PYG{p}{)}
+        \PYG{k}{else}\PYG{p}{:}
+            \PYG{n}{hv}\PYG{o}{.}\PYG{n}{visual}\PYG{p}{(}\PYG{n}{res}\PYG{p}{)}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{res}\PYG{p}{)}
+
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Вы хотите получить элементы решетки концептов C(K)? Да (1) или Нет (0)\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{yes\PYGZus{}or\PYGZus{}no} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n+nb}{input}\PYG{p}{())}
+\PYG{k}{if} \PYG{n}{yes\PYGZus{}or\PYGZus{}no}\PYG{p}{:}
+    \PYG{k+kn}{import} \PYG{n+nn}{lattice\PYGZus{}of\PYGZus{}concepts} \PYG{k}{as} \PYG{n+nn}{lc}
+    \PYG{n}{lc}\PYG{o}{.}\PYG{n}{main}\PYG{p}{()}
+\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+\PYG{l+s+sd}{Примеры входных данных для 1\PYGZhy{}ой части работы:}
+
+\PYG{l+s+sd}{3 }
+\PYG{l+s+sd}{0 1 0}
+\PYG{l+s+sd}{0 0 1}
+\PYG{l+s+sd}{1 0 0}
+
+\PYG{l+s+sd}{4}
+\PYG{l+s+sd}{1 0 1 0 }
+\PYG{l+s+sd}{1 1 0 0}
+\PYG{l+s+sd}{0 0 1 0}
+\PYG{l+s+sd}{0 1 0 1}
+
+\PYG{l+s+sd}{5}
+\PYG{l+s+sd}{1 0 1 1 0}
+\PYG{l+s+sd}{0 1 0 1 0}
+\PYG{l+s+sd}{1 0 1 1 0}
+\PYG{l+s+sd}{1 1 1 1 0}
+\PYG{l+s+sd}{0 0 0 0 1}
+
+\PYG{l+s+sd}{8}
+\PYG{l+s+sd}{0 1 1 0 0 0 0 0}
+\PYG{l+s+sd}{1 0 1 0 0 0 0 0}
+\PYG{l+s+sd}{0 1 1 0 0 0 0 0}
+\PYG{l+s+sd}{0 0 0 1 1 0 0 0}
+\PYG{l+s+sd}{0 0 0 0 1 0 0 0}
+\PYG{l+s+sd}{0 0 0 0 0 1 1 1}
+\PYG{l+s+sd}{0 0 0 0 0 1 1 0}
+\PYG{l+s+sd}{0 0 0 0 0 1 1 1}
+
+\PYG{l+s+sd}{Примеры входных данных для 2\PYGZhy{}ой части работы:}
+
+\PYG{l+s+sd}{1}
+\PYG{l+s+sd}{2}
+\PYG{l+s+sd}{30}
+\PYG{l+s+sd}{1}
+\PYG{l+s+sd}{1}
+
+\PYG{l+s+sd}{2}
+\PYG{l+s+sd}{2}
+\PYG{l+s+sd}{2 3 21 15 14 4 8 30 16 32}
+\PYG{l+s+sd}{1}
+
+\PYG{l+s+sd}{Пример входных данных для 3\PYGZhy{}ей части работы:}
+\PYG{l+s+sd}{1 2 3 4}
+
+\PYG{l+s+sd}{a b c d}
+
+\PYG{l+s+sd}{1 0 1 0}
+\PYG{l+s+sd}{1 1 0 0}
+\PYG{l+s+sd}{0 1 0 1}
+\PYG{l+s+sd}{0 1 0 1}
+\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+\end{Verbatim}

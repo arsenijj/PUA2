@@ -93,22 +93,21 @@ def visual(lst, flag=False):
             current_level = level
             for value in values:
                 dividers_lst = dividers(value)
-                dy1 = dy
+                y_previous = dy
                 for i, values_levels in enumerate(levels_numbers_list[level - 1::-1]):
                     x_value1 = x_save
                     delta_value1 = 20 / len_levels[current_level - i - 1]
                     delta1_value1 = delta_value1 / 2
                     x_value1 += delta1_value1
                     for value1 in values_levels:
-                        if value % value1 == 0 and value1 < value and (value1, False) in dividers_lst:
-                            dividers_lst[dividers_lst.index((value1, False))] = (value1, True)
-                            dividers_lst1 = dividers(value1)
-                            for val in dividers_lst1:
+                        if value % value1 == 0 and (value1, False) in dividers_lst:
+                            dividers_lst.remove((value1, False))
+                            for val in dividers(value1):
                                 if val in dividers_lst:
-                                    dividers_lst[dividers_lst.index(val)] = (val, True)
-                            plt.plot([x_value1 + 0.3, x + 0.3], [y - dy1 + 0.08, y - 0.03], color='black')
+                                    dividers_lst.remove(val)
+                            plt.plot([x_value1 + 0.3, x + 0.3], [y - y_previous + 0.08, y - 0.03], color='black')
                         x_value1 += delta_value1
-                    dy1 += dy
+                    y_previous += dy
                 x += delta
             y += dy
     else:

@@ -32,29 +32,21 @@ def full_system_of_class_representatives(factor):
     print(*res, sep=', ', end='}\u2282A\n')
 
 
-def make_equivalent_closure(copy, size):
-    list_for_equivalent_closure = set()
-    for i in range(size):
-        for j in range(size):
-            if matrix[i][j] == 1 and matrix[j][i] == 0:
-                copy[j][i] = 1
-            if copy[j][i]:
-                list_for_equivalent_closure.add((j + 1, i + 1))
-        if matrix[i][i] == 0:
-            copy[i][i] = 1
-        if copy[i][i]:
-            list_for_equivalent_closure.add((i + 1, i + 1))
+def make_equivalent_closure(copy, size, matrix_set):
 
-    for _ in range(size):
+    for u in range(size):
+        if copy[u][u] == 0:
+            copy[u][u] = 1
         for k in range(size):
+            if copy[u][k] and not copy[k][u]:
+                copy[k][u] = 1
             for i in range(size):
                 for j in range(size):
                     if copy[k][i] == copy[i][j] == 1 and copy[k][j] == 0:
                         copy[k][j] = 1
-                    if copy[k][j]:
-                        list_for_equivalent_closure.add((k + 1, j + 1))
 
-    return sorted(list_for_equivalent_closure), copy
+    return [(i + 1, j + 1) for i in range(size) for j in range(size)
+            if copy[i][j] and (i + 1, j + 1) not in matrix_set], copy
 
 
 def is_transitive(matrix, size):
@@ -178,8 +170,7 @@ def min_max_elements(lst):
     return
 
 
-print('''Вы хотите получить фактор-множество отношения и полную систему 
-        представителей классов? Да (1) или Нет (0)''')
+print('Вы хотите получить фактор-множество отношения и полную систему представителей классов? Да (1) или Нет (0)')
 
 yes_or_no = int(input())
 if yes_or_no:
@@ -220,13 +211,13 @@ if yes_or_no:
             print('транзитивности', end=', ')
         if not flagR:
             print('рефлексивности', end=', ')
-        print('''то для получения фактор-множества отношения, требуется 
-               построить эквивалентное замыкание.''')
+        print('то для получения фактор-множества отношения, требуется построить эквивалентное замыкание.')
 
         copy = matrix
-        ls, mt = make_equivalent_closure(copy, size)
+        ls, mt = make_equivalent_closure(copy, size, matrix_set)
 
-        print('Эквивалентное замыкание бинарного отношения: {', end='')
+        print('Эквивалентное замыкание бинарного отношения: ', end='')
+        matrix_set_view(matrix_set, True)
         print(*ls, sep=', ', end='}\n\n')
 
         print('Матрица эквивалентного замыкания бинарного отношения:')

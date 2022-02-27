@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 
 
 def dividers(num):
-    return [(i, False) for i in range(int(num / 2) + 1, 0, -1) if num % i == 0]
+    return [i for i in range(int(num / 2) + 1, 0, -1) if num % i == 0]
 
 
 def levels_length(lst):
@@ -100,8 +100,8 @@ def visual(lst, flag=False):
                     delta1_value1 = delta_value1 / 2
                     x_value1 += delta1_value1
                     for value1 in values_levels:
-                        if value % value1 == 0 and (value1, False) in dividers_lst:
-                            dividers_lst.remove((value1, False))
+                        if value % value1 == 0 and value1 in dividers_lst:
+                            dividers_lst.remove(value1)
                             for val in dividers(value1):
                                 if val in dividers_lst:
                                     dividers_lst.remove(val)

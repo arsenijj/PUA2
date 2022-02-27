@@ -1,14 +1,3 @@
-def make_set(matrix, size):
-
-    set_view = []
-
-    for i in range(size):
-        for j in range(size):
-            if matrix[i][j] == 1:
-                set_view.append((i + 1, j + 1))
-    return sorted(set_view)
-
-
 def matrix_set_view(matrix_set, flag=None):
     if not flag:
         print('Исходное отношение: {', end='')
@@ -18,34 +7,29 @@ def matrix_set_view(matrix_set, flag=None):
         print(*matrix_set, sep=', ', end='; ')
 
 
-def print_factor(res_set, res_representatives, factor):
-
-    print('Фактор-множество отношения: {' + str(res_set)[1:-1] + '}, где ', end='')
-
-    for i, representative in enumerate(res_representatives):
-
-        print(str(res_set[i]) + ' \u2208 '
-              + f'\u03B5({representative})={list(map(lambda x: x[0], factor[i]))}', end='')
-
-        if i < len(res_representatives) - 1:
-            print(', ', end='')
-        else:
-            print('\n')
+def print_factor(factor_set_res):
+    print('Фактор-множество множества A по эквивалентности \u03B5: {', end='')
+    factor_set_res = [list(subset) for subset in factor_set_res]
+    for subset in factor_set_res[:-1:]:
+        print('{', end='')
+        print(*subset, sep=', ', end='}, ')
+    print('{', end='')
+    print(*factor_set_res[-1], sep=', ', end='}}\n')
 
 
 def factor_set(matrix, size):
-    factor = [[(j + 1, i + 1) for j, value in enumerate(matrix[i]) if value == 1] for i in range(size)]
-    factor.sort(key=len)
+    classes = [[j + 1 for j, value in enumerate(matrix[i]) if value == 1]
+                                                for i in range(size)]
+    return set(frozenset(subset) for subset in classes)
 
-    factor_res = []
-    factor_classes = []
-    for i in range(size):
-        for j in range(len(factor[i])):
-            if not (factor[i][j][0] in factor_res):
-                factor_res.append(factor[i][j][0])
-                factor_classes.append(factor[i][j][1])
-                i += 1
-    return factor_res, factor_classes, factor
+
+def full_system_of_class_representatives(factor):
+    res = []
+    for subset in factor:
+        res.append(min(subset))
+    print('''Полная система представителей классов эквивалентности 
+             u03B5 на множестве A: T={', end=''''')
+    print(*res, sep=', ', end='}\u2282A\n')
 
 
 def make_equivalent_closure(copy, size):
@@ -117,7 +101,9 @@ def is_reflexive_or_anti_reflexive(matrix, size):
 
 
 def get_data():
+    print('Введите размер матрицы:')
     n = int(input())
+    print(f'Введите построчно элементы матрицы (по {n})')
     m = [[int(elem) for elem in input().split()] for _ in range(n)]
     m_set = [(i + 1, j + 1) for i in range(n) for j in range(n) if m[i][j] == 1]
     return m, sorted(m_set), n
@@ -133,7 +119,7 @@ def hasse_greater_eq(nums):
 
 def hasse_division(dividers_num):
     hasse_list = []
-    sl = {key: 1 if key == 1 else 0 for i, key in enumerate(dividers_num)}
+    sl = {key: 1 for i, key in enumerate(dividers_num)}
 
     for number in dividers_num[1:]:
         for divider in dividers_num[:dividers_num.index(number)]:
@@ -161,120 +147,159 @@ def dividers(num, flag=False):
     result.append(num)
     return result
 
-#######################################################################################################################
-matrix, matrix_set, size = get_data()
-matrix_set_view(matrix_set)
-print('\n')
-print('Cвойства бинарного отношения:')
-flagT = True
-flagR = True
-flagS = True
 
-if is_transitive(matrix, size):
-    print('Отношение является транзитивным')
-else:
-    print('Отношение не является транзитивным')
-    flagT = False
-
-symm, _ = is_symmetric_or_antisymmetric(matrix,size)
-if symm:
-    print('Отношение является симметричным')
-else:
-    print('Отношение не является симметричным')
-    flagS = False
-
-refl, _ = is_reflexive_or_anti_reflexive(matrix, size)
-if refl:
-    print('Отношение является рефлексивным')
-else:
-    print('Отношение не является рефлексивным')
-    flagR = False
-
-print('\n')
-if not flagS or not flagR or not flagT:
-    print('Так как отношение не обладает свойством ', end='')
-    if not flagS:
-        print('симметричности', end=', ')
-    if not flagT:
-        print('транзитивности', end=', ')
-    if not flagR:
-        print('рефлексивности', end=', ')
-    print('то для получения фактор-множества отношения, требуется построить эквивалентное замыкание.')
-
-    copy = matrix
-    ls, mt = make_equivalent_closure(copy, size)
-
-    print('Эквивалентное замыкание бинарного отношения: {', end='')
-    print(*ls, sep=', ', end='}\n\n')
-
-    print('Матрица эквивалентного замыкания бинарного отношения:')
-    for i in range(len(mt)):
-        print(*mt[i])
-    print('\n')
-
-    res_set, res_representatives, factor = factor_set(mt, size)
-    print_factor(res_set, res_representatives, factor)
-
-else:
-    print('Заданное отношение является эквивалентным. Его матрица:')
-    for i in range(len(matrix)):
-        print(*matrix[i])
-    print('\n')
-    res_set, res_representatives, factor = factor_set(matrix, size)
-    print_factor(res_set, res_representatives, factor)
-#######################################################################################################################
-
-print('\u13AF\u212C\u2642\u0392\u20B3')
-for _ in range(7):
-    print('\u2694\u2694\u2694\u2694\u2694\u2694\u2694\u2694\u2694\u2694\u2694\u2694\u2694\u2694', end='')
-print('\u2694\u2694\u2694\u2694\u2694\u2694\u2694\u2694\u2694\u2694\u2694\u2694\u2694\u2694\u2694\u2694\u2694\u2694')
-
-
-print('Выберите тип задания множества: число (1) или заданное множество (2)')
-set_type = int(input())
-
-print('Выберете тип порядка: <= (1) или отношение делимости (2)')
-order_type = int(input())
-
-
-num = None
-res = None
-if set_type == 1:
-    print('Введите число')
-    num = int(input())
-    print('Хотите ли добавить единицу во множество? Да(1), Нет(0)')
-    yes_or_no = int(input())
-    sub_res = None
-    if yes_or_no == 1:
-        if order_type == 2:
-            sub_res = dividers(num)
-            res = hasse_division(sub_res)
-        else:
-            sub_res = [i + 1 for i in range(num)]
-            res = hasse_greater_eq(sub_res)
+def min_max_elements(lst):
+    if lst[0][1] == lst[1][1]:
+        print('Наименьшего элемента в данном множестве нет')
     else:
-        if order_type == 2:
-            sub_res = dividers(num, True)
-            res = hasse_division(sub_res)
+        print(f'Наименьший элемент множества: {lst[0][0]}')
+
+    if lst[-1][1] == lst[-2][1]:
+        print('Наибольшего элемента в данном множестве нет')
+    else:
+        print(f'Наибольший элемент множества: {lst[-1][0]}')
+
+    print(f'Минимальные элементы множества: {lst[0][0]}, ', end='')
+    minimum = lst[0][1]
+    for values in lst[1:]:
+        if values[1] == minimum:
+            print(values[0], end=', ')
         else:
-            sub_res = [i + 2 for i in range(num - 1)]
-            res = hasse_greater_eq(sub_res)
-else:
-    print('Введите множество')
-    num = [int(value) for value in input().split()]
-    num.sort()
-    if order_type == 2:
-        res = hasse_division(num)
-    elif order_type == 1:
-        res = hasse_greater_eq(num)
+            break
+    print('\n')
+    print(f'Максимальные элементы множества: {lst[-1][0]}, ', end='')
+    maximum = lst[-1][1]
+    for values in lst[-2::-1]:
+        if values[1] == maximum:
+            print(values[0], end=', ')
+        else:
+            break
+    print('\n')
+    return
 
-print(res)
 
-print('Вы хотите получить диаграмму Хассе? Да(1) или Нет(0)')
+print('''Вы хотите получить фактор-множество отношения и полную систему 
+        представителей классов? Да (1) или Нет (0)''')
+
 yes_or_no = int(input())
 if yes_or_no:
-    # import ass
-    # ass.main(res)
+    matrix, matrix_set, size = get_data()
+    matrix_set_view(matrix_set)
+    print('\n')
+    print('Cвойства бинарного отношения:')
+    flagT = True
+    flagR = True
+    flagS = True
+
+    if is_transitive(matrix, size):
+        print('Отношение является транзитивным')
+    else:
+        print('Отношение не является транзитивным')
+        flagT = False
+
+    symm, _ = is_symmetric_or_antisymmetric(matrix,size)
+    if symm:
+        print('Отношение является симметричным')
+    else:
+        print('Отношение не является симметричным')
+        flagS = False
+
+    refl, _ = is_reflexive_or_anti_reflexive(matrix, size)
+    if refl:
+        print('Отношение является рефлексивным')
+    else:
+        print('Отношение не является рефлексивным')
+        flagR = False
+
+    print('\n')
+    if not flagS or not flagR or not flagT:
+        print('Так как отношение не обладает свойством ', end='')
+        if not flagS:
+            print('симметричности', end=', ')
+        if not flagT:
+            print('транзитивности', end=', ')
+        if not flagR:
+            print('рефлексивности', end=', ')
+        print('''то для получения фактор-множества отношения, требуется 
+               построить эквивалентное замыкание.''')
+
+        copy = matrix
+        ls, mt = make_equivalent_closure(copy, size)
+
+        print('Эквивалентное замыкание бинарного отношения: {', end='')
+        print(*ls, sep=', ', end='}\n\n')
+
+        print('Матрица эквивалентного замыкания бинарного отношения:')
+        for i in range(len(mt)):
+            print(*mt[i])
+        print('\n')
+
+        factor_set_res = factor_set(matrix, size)
+        print_factor(factor_set_res)
+        full_system_of_class_representatives(factor_set_res)
+
+    else:
+        print('Заданное отношение является эквивалентным. Его матрица:')
+        for i in range(len(matrix)):
+            print(*matrix[i])
+        print('\n')
+
+        factor_set_res = factor_set(matrix, size)
+        print_factor(factor_set_res)
+        full_system_of_class_representatives(factor_set_res)
+
+print('''Вы хотите получить минимальные/наименьшие и максимальные/наибольшие 
+        элементы множества? Да (1) или Нет (0)''')
+yes_or_no = int(input())
+if yes_or_no:
+    print('Выберите тип задания множества: число (1) или заданное множество (2)')
+    set_type = int(input())
+
+    print('Выберете тип порядка: <= (1) или отношение делимости (2)')
+    order_type = int(input())
+
+    if set_type == 1:
+        print('Введите число')
+        num = int(input())
+        print('Хотите ли добавить единицу во множество? Да(1), Нет(0)')
+        yes_or_no = int(input())
+        sub_res = None
+        if yes_or_no == 1:
+            if order_type == 2:
+                sub_res = dividers(num)
+                res = hasse_division(sub_res)
+            else:
+                sub_res = [i + 1 for i in range(num)]
+                res = hasse_greater_eq(sub_res)
+        else:
+            if order_type == 2:
+                sub_res = dividers(num, True)
+                res = hasse_division(sub_res)
+            else:
+                sub_res = [i + 2 for i in range(num - 1)]
+                res = hasse_greater_eq(sub_res)
+    else:
+        print('Введите множество')
+        num = [int(value) for value in input().split()]
+        num = list(set(num))
+        num.sort()
+
+        if order_type == 2:
+            res = hasse_division(num)
+        elif order_type == 1:
+            res = hasse_greater_eq(num)
+
+    min_max_elements(res)
+    print('Вы хотите получить диаграмму Хассе? Да(1) или Нет(0)')
+    yes_or_no = int(input())
+    if yes_or_no:
+        import hasse_visualization as hv
+        if order_type == 1:
+            hv.visual(res, True)
+        else:
+            hv.visual(res)
+    print(res)
+
 '''
 Примеры входных данных:
 
@@ -282,24 +307,6 @@ if yes_or_no:
 0 1 0
 0 0 1
 1 0 0
-
-4
-0 1 1 0
-1 1 1 0
-0 1 1 0
-0 0 0 1
-
-4
-0 1 0 0
-0 0 0 0
-0 0 0 1
-0 1 0 0
-
-4
-1 1 0 1
-0 1 1 0 
-0 0 1 1
-0 0 0 1
 
 4
 1 0 1 0 
@@ -313,4 +320,14 @@ if yes_or_no:
 1 0 1 1 0
 1 1 1 1 0
 0 0 0 0 1
+
+8
+0 1 1 0 0 0 0 0
+1 0 1 0 0 0 0 0
+0 1 1 0 0 0 0 0
+0 0 0 1 1 0 0 0
+0 0 0 0 1 0 0 0
+0 0 0 0 0 1 1 1
+0 0 0 0 0 1 1 0
+0 0 0 0 0 1 1 1
 '''

@@ -293,7 +293,7 @@ if yes_or_no:
     print('Вы хотите получить диаграмму Хассе? Да(1) или Нет(0)')
     yes_or_no = int(input())
     if yes_or_no:
-        import hasse_visualization as hv
+        import hassevisualization as hv
         if order_type == 1:
             hv.visual(res, True)
         else:

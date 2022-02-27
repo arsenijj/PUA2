@@ -1,6 +1,10 @@
 import matplotlib.pyplot as plt
 
 
+def dividers(num):
+    return [(i, False) for i in range(int(num / 2) + 1, 0, -1) if num % i == 0]
+
+
 def levels_length(lst):
     max_len = 1
     max_level_length_list = []
@@ -29,7 +33,6 @@ def visual(lst, flag=False):
         levels_numbers_list = [[] for _ in range(len(len_levels))]
         for value in lst:
             levels_numbers_list[value[1] - 1].append(value[0])
-
         plt.ylim(-0.4, 1.2 * lim / 4)
 
         x = -10
@@ -87,15 +90,25 @@ def visual(lst, flag=False):
             delta = 20 / len_levels[level]
             delta1 = delta / 2
             x += delta1
+            current_level = level
             for value in values:
-                x_value1 = x_save
-                delta_value1 = 20 / len_levels[level - 1]
-                delta1_value1 = delta_value1 / 2
-                x_value1 += delta1_value1
-                for value1 in levels_numbers_list[level - 1]:
-                    if value % value1 == 0:
-                        plt.plot([x_value1 + 0.3, x + 0.3], [y - dy + 0.08, y - 0.03], color='black')
-                    x_value1 += delta_value1
+                dividers_lst = dividers(value)
+                dy1 = dy
+                for i, values_levels in enumerate(levels_numbers_list[level - 1::-1]):
+                    x_value1 = x_save
+                    delta_value1 = 20 / len_levels[current_level - i - 1]
+                    delta1_value1 = delta_value1 / 2
+                    x_value1 += delta1_value1
+                    for value1 in values_levels:
+                        if value % value1 == 0 and value1 < value and (value1, False) in dividers_lst:
+                            dividers_lst[dividers_lst.index((value1, False))] = (value1, True)
+                            dividers_lst1 = dividers(value1)
+                            for val in dividers_lst1:
+                                if val in dividers_lst:
+                                    dividers_lst[dividers_lst.index(val)] = (val, True)
+                            plt.plot([x_value1 + 0.3, x + 0.3], [y - dy1 + 0.08, y - 0.03], color='black')
+                        x_value1 += delta_value1
+                    dy1 += dy
                 x += delta
             y += dy
     else:
@@ -116,12 +129,13 @@ def visual(lst, flag=False):
 
     plt.show()
 
+
 '''
 visual([(1, 1, []), (2, 2, [1]), (3, 3, [2]), (4, 4, [3]), (5, 5, [4]), (6, 6, [5]), (7, 7, [6]), (8, 8, [7]),
         (9, 9, [8]), (10, 10, [9]), (11, 11, [10]), (12, 12, [11])], True)
         
 visual([(1, 1, []), (2, 2, [1]), (3, 3, [2]), (4, 4, [3]), (5, 5, [4]), (6, 6, [5]), (7, 7, [6])], True)
 
-visual([(1, 1, []), (2, 2, [1]), (3, 2, [1]), (5, 2, [1]), (6, 3, [2, 3]), (10, 3, [2, 5]), (15, 3, [3, 5]), 
-         (30, 4, [6, 10, 15])])
+visual([(2, 1, []), (3, 1, []), (4, 2, [2]), (14, 2, [2]), (15, 2, [3]), (21, 2, [3]), (8, 3, [4]), (30, 3, [15]),
+        (16, 4, [8]), (32, 5, [16])])
 '''

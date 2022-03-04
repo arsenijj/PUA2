@@ -28,14 +28,14 @@ def get_levels_list(lst, len_levels):
     return levels_list
 
 
-def visual(lst, flag=False):
+def visual(lst, flag):
 
     plt.xlim(-10.0, 10.0)
     lim = lst[-1][1]
     plt.xlabel('Элементы множеств')
     plt.ylabel('Уровни диаграммы')
 
-    if not flag:
+    if flag == 1:
         len_levels = levels_length(lst)
 
         levels_numbers_list = get_levels_list(lst, len_levels)
@@ -94,7 +94,7 @@ def visual(lst, flag=False):
                     y_previous += dy
                 x_value += delta
             y_value += dy
-    else:
+    elif flag == 2:
         plt.ylim(-0.4, 2 * lim)
 
         x_value = 0
@@ -109,10 +109,34 @@ def visual(lst, flag=False):
             plt.scatter(x_value + 0.32, y_value + 0.1, s=250, facecolors='none', edgecolors='black')
             plt.plot([x_value + 0.3, x_value + 0.3], [y_value - 0.35, y_value - dy + 0.5], color='black')
             y_value += dy
+    elif flag == 3:
+        plt.xlim(-20.0, 20.0)
+        plt.ylim(-0.4, 1.2 * len(lst) / 4)
+        x_save = -20
+        y_value = -0.3
+        dy = 0.3
+        for level in lst:
+            x_value = x_save
+            delta = 30 / len(level)
+            delta1 = delta / 2
+            x_value += delta1
+            for value in level:
+                plt.text(x_value, y_value, f'{value}')
+                x_value += delta
+            y_value += dy
 
     plt.show()
 
 
+def get_levels_list_sets(sets):
+    res = [[] for _ in range(sets[-1][1])]
+    for subset in sets:
+        res[subset[1]-1].append(subset[0])
+    return res
+
+ls = [(({2}, {'a', 'b'}), 1, []), (({1}, {'a', 'c'}), 1, []), (({3, 4}, {'d', 'b'}), 1, []), (({1, 2}, {'a'}), 2, [{2}, {1}]), (({2, 3, 4}, {'b'}), 2, [{2}, {3, 4}])]
+print(get_levels_list_sets(ls))
+visual(get_levels_list_sets(ls), 3)
 '''
 Примеры входных данных:
 
@@ -123,4 +147,6 @@ visual([(1, 1, []), (2, 2, [1]), (3, 3, [2]), (4, 4, [3]), (5, 5, [4]), (6, 6, [
 
 visual([(1, 1, []), (2, 2, [1]), (3, 2, [1]), (5, 2, [1]), (6, 3, [2, 3]), (10, 3, [2, 5]), (15, 3, [3, 5]), 
          (30, 4, [6, 10, 15])])
+
+[(('{a, b}', {2}), 1, []), (('{a, c}', {1}), 1, []), (('{b, d}', {3, 4}), 1, []), (('{a}', {1, 2}), 2, [{2}, {1}]), (('{b}', {2, 3, 4}), 2, [{2}, {3, 4}])]
 '''

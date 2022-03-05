@@ -31,11 +31,12 @@ def get_levels_list(lst, len_levels):
 def visual(lst, flag):
 
     plt.xlim(-10.0, 10.0)
-    lim = lst[-1][1]
+
     plt.xlabel('Элементы множеств')
     plt.ylabel('Уровни диаграммы')
 
     if flag == 1:
+        lim = lst[-1][1]
         len_levels = levels_length(lst)
 
         levels_numbers_list = get_levels_list(lst, len_levels)
@@ -95,6 +96,7 @@ def visual(lst, flag):
                 x_value += delta
             y_value += dy
     elif flag == 2:
+        lim = lst[-1][1]
         plt.ylim(-0.4, 2 * lim)
 
         x_value = 0
@@ -109,15 +111,19 @@ def visual(lst, flag):
             plt.scatter(x_value + 0.32, y_value + 0.1, s=250, facecolors='none', edgecolors='black')
             plt.plot([x_value + 0.3, x_value + 0.3], [y_value - 0.35, y_value - dy + 0.5], color='black')
             y_value += dy
-    elif flag == 3:
-        plt.xlim(-20.0, 20.0)
+    elif flag == 3 or flag == 4:
+        plt.xlim(-50.0, 50.0)
         plt.ylim(-0.4, 1.2 * len(lst) / 4)
-        x_save = -20
+        x_save = -50
         y_value = -0.3
         dy = 0.3
-        for level in lst:
+        x = -1.75 if flag == 3 else 0
+        plt.text(x, -0.3, f'{str(lst[0])[2:-2:]}')
+        y_value += dy
+        d1 = 90
+        for level in lst[1:-1]:
             x_value = x_save
-            delta = 30 / len(level)
+            delta = d1 / len(level)
             delta1 = delta / 2
             x_value += delta1
             for value in level:
@@ -125,28 +131,76 @@ def visual(lst, flag):
                 x_value += delta
             y_value += dy
 
+        plt.text(x, y_value, f'{str(lst[-1])[2:-2:]}')
+        x_value = x_save
+        delta = d1 / len(lst[-2])
+        d = 1.5 if flag == 3 else 2
+        x_value += delta / d
+        for _ in lst[-2]:
+            plt.plot([x_value, 0], [y_value-0.25, y_value-0.03], color='black')
+            x_value += delta
+
+        x_value = x_save
+        delta = d1 / len(lst[1])
+        x_value += delta
+        for _ in lst[1]:
+            plt.plot([x_value, 0], [-0.03, -0.25], color='black')
+            x_value += delta
+        y_value = 0.3
+        current_level = 2
+        if flag == 3:
+            if len(lst[-2][0]) == 2:
+                for level in lst[2:-1:1]:
+                    x_value = x_save
+                    delta = 90 / len(level)
+                    delta1 = delta / 1.5
+                    x_value += delta1
+                    for (subset, _) in level:
+                        x_value1 = x_save
+                        delta_value1 = 90 / len(lst[current_level-1])
+                        delta1_value1 = delta_value1 / 1.5
+                        x_value1 += delta1_value1
+                        for (subset1, _) in lst[current_level-1]:
+                            if subset1.intersection(subset):
+                                plt.plot([x_value1 + 0.3, x_value + 0.3], [y_value - dy + 0.08, y_value - 0.03],
+                                         color='black')
+                            x_value1 += delta_value1
+                        x_value += delta
+                    y_value += dy
+                    current_level += 1
+        else:
+            for level in lst[2:-1:1]:
+                x_value = x_save
+                delta = 90 / len(level)
+                delta1 = delta / 1.5
+                x_value += delta1
+                for subset in level:
+                    x_value1 = x_save
+                    delta_value1 = 90 / len(lst[current_level-1])
+                    delta1_value1 = delta_value1 / 1.5
+                    x_value1 += delta1_value1
+                    for subset1 in lst[current_level-1]:
+                        if subset1.intersection(subset):
+                            plt.plot([x_value1, x_value - 0.3], [y_value - dy + 0.08, y_value - 0.03], color='black')
+                        x_value1 += delta_value1
+                    x_value += delta
+                y_value += dy
+                current_level += 1
+
     plt.show()
 
 
-def get_levels_list_sets(sets):
+def get_levels_list_sets(sets, g, flag=True):
     res = [[] for _ in range(sets[-1][1])]
+
     for subset in sets:
-        res[subset[1]-1].append(subset[0])
-    return res
-
-ls = [(({2}, {'a', 'b'}), 1, []), (({1}, {'a', 'c'}), 1, []), (({3, 4}, {'d', 'b'}), 1, []), (({1, 2}, {'a'}), 2, [{2}, {1}]), (({2, 3, 4}, {'b'}), 2, [{2}, {3, 4}])]
-print(get_levels_list_sets(ls))
-visual(get_levels_list_sets(ls), 3)
-'''
-Примеры входных данных:
-
-visual([(1, 1, []), (2, 2, [1]), (3, 3, [2]), (4, 4, [3]), (5, 5, [4]), (6, 6, [5]), (7, 7, [6]), (8, 8, [7]),
-        (9, 9, [8]), (10, 10, [9]), (11, 11, [10]), (12, 12, [11])], True)
-        
-visual([(1, 1, []), (2, 2, [1]), (3, 3, [2]), (4, 4, [3]), (5, 5, [4]), (6, 6, [5]), (7, 7, [6])], True)
-
-visual([(1, 1, []), (2, 2, [1]), (3, 2, [1]), (5, 2, [1]), (6, 3, [2, 3]), (10, 3, [2, 5]), (15, 3, [3, 5]), 
-         (30, 4, [6, 10, 15])])
-
-[(('{a, b}', {2}), 1, []), (('{a, c}', {1}), 1, []), (('{b, d}', {3, 4}), 1, []), (('{a}', {1, 2}), 2, [{2}, {1}]), (('{b}', {2, 3, 4}), 2, [{2}, {3, 4}])]
-'''
+        if flag:
+            res[subset[1]-1].append(subset[0])
+        else:
+            res[subset[1] - 1].append(subset[0][0])
+    if flag:
+        res.insert(0, ['(\u2205, M)'])
+    else:
+        res.insert(0, ['M'])
+    print(res + [[g]])
+    return res + [[g]]

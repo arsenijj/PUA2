@@ -32,11 +32,12 @@
 \PYG{k}{def} \PYG{n+nf}{visual}\PYG{p}{(}\PYG{n}{lst}\PYG{p}{,} \PYG{n}{flag}\PYG{p}{):}
 
     \PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlim}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{10.0}\PYG{p}{,} \PYG{l+m+mf}{10.0}\PYG{p}{)}
-    \PYG{n}{lim} \PYG{o}{=} \PYG{n}{lst}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{]}
+
     \PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Элементы множеств\PYGZsq{}}\PYG{p}{)}
     \PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Уровни диаграммы\PYGZsq{}}\PYG{p}{)}
 
     \PYG{k}{if} \PYG{n}{flag} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{:}
+        \PYG{n}{lim} \PYG{o}{=} \PYG{n}{lst}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{]}
         \PYG{n}{len\PYGZus{}levels} \PYG{o}{=} \PYG{n}{levels\PYGZus{}length}\PYG{p}{(}\PYG{n}{lst}\PYG{p}{)}
 
         \PYG{n}{levels\PYGZus{}numbers\PYGZus{}list} \PYG{o}{=} \PYG{n}{get\PYGZus{}levels\PYGZus{}list}\PYG{p}{(}\PYG{n}{lst}\PYG{p}{,} \PYG{n}{len\PYGZus{}levels}\PYG{p}{)}
@@ -96,6 +97,7 @@
                 \PYG{n}{x\PYGZus{}value} \PYG{o}{+=} \PYG{n}{delta}
             \PYG{n}{y\PYGZus{}value} \PYG{o}{+=} \PYG{n}{dy}
     \PYG{k}{elif} \PYG{n}{flag} \PYG{o}{==} \PYG{l+m+mi}{2}\PYG{p}{:}
+        \PYG{n}{lim} \PYG{o}{=} \PYG{n}{lst}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{]}
         \PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylim}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.4}\PYG{p}{,} \PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{lim}\PYG{p}{)}
 
         \PYG{n}{x\PYGZus{}value} \PYG{o}{=} \PYG{l+m+mi}{0}
@@ -110,15 +112,19 @@
             \PYG{n}{plt}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{x\PYGZus{}value} \PYG{o}{+} \PYG{l+m+mf}{0.32}\PYG{p}{,} \PYG{n}{y\PYGZus{}value} \PYG{o}{+} \PYG{l+m+mf}{0.1}\PYG{p}{,} \PYG{n}{s}\PYG{o}{=}\PYG{l+m+mi}{250}\PYG{p}{,} \PYG{n}{facecolors}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}none\PYGZsq{}}\PYG{p}{,} \PYG{n}{edgecolors}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}black\PYGZsq{}}\PYG{p}{)}
             \PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{([}\PYG{n}{x\PYGZus{}value} \PYG{o}{+} \PYG{l+m+mf}{0.3}\PYG{p}{,} \PYG{n}{x\PYGZus{}value} \PYG{o}{+} \PYG{l+m+mf}{0.3}\PYG{p}{],} \PYG{p}{[}\PYG{n}{y\PYGZus{}value} \PYG{o}{\PYGZhy{}} \PYG{l+m+mf}{0.35}\PYG{p}{,} \PYG{n}{y\PYGZus{}value} \PYG{o}{\PYGZhy{}} \PYG{n}{dy} \PYG{o}{+} \PYG{l+m+mf}{0.5}\PYG{p}{],} \PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}black\PYGZsq{}}\PYG{p}{)}
             \PYG{n}{y\PYGZus{}value} \PYG{o}{+=} \PYG{n}{dy}
-    \PYG{k}{elif} \PYG{n}{flag} \PYG{o}{==} \PYG{l+m+mi}{3}\PYG{p}{:}
-        \PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlim}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{20.0}\PYG{p}{,} \PYG{l+m+mf}{20.0}\PYG{p}{)}
+    \PYG{k}{elif} \PYG{n}{flag} \PYG{o}{==} \PYG{l+m+mi}{3} \PYG{o+ow}{or} \PYG{n}{flag} \PYG{o}{==} \PYG{l+m+mi}{4}\PYG{p}{:}
+        \PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlim}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{50.0}\PYG{p}{,} \PYG{l+m+mf}{50.0}\PYG{p}{)}
         \PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylim}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.4}\PYG{p}{,} \PYG{l+m+mf}{1.2} \PYG{o}{*} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{lst}\PYG{p}{)} \PYG{o}{/} \PYG{l+m+mi}{4}\PYG{p}{)}
-        \PYG{n}{x\PYGZus{}save} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{20}
+        \PYG{n}{x\PYGZus{}save} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{50}
         \PYG{n}{y\PYGZus{}value} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.3}
         \PYG{n}{dy} \PYG{o}{=} \PYG{l+m+mf}{0.3}
-        \PYG{k}{for} \PYG{n}{level} \PYG{o+ow}{in} \PYG{n}{lst}\PYG{p}{:}
+        \PYG{n}{x} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{1.75} \PYG{k}{if} \PYG{n}{flag} \PYG{o}{==} \PYG{l+m+mi}{3} \PYG{k}{else} \PYG{l+m+mi}{0}
+        \PYG{n}{plt}\PYG{o}{.}\PYG{n}{text}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.3}\PYG{p}{,} \PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{lst}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])[}\PYG{l+m+mi}{2}\PYG{p}{:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{:]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+        \PYG{n}{y\PYGZus{}value} \PYG{o}{+=} \PYG{n}{dy}
+        \PYG{n}{d1} \PYG{o}{=} \PYG{l+m+mi}{90}
+        \PYG{k}{for} \PYG{n}{level} \PYG{o+ow}{in} \PYG{n}{lst}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]:}
             \PYG{n}{x\PYGZus{}value} \PYG{o}{=} \PYG{n}{x\PYGZus{}save}
-            \PYG{n}{delta} \PYG{o}{=} \PYG{l+m+mi}{30} \PYG{o}{/} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{level}\PYG{p}{)}
+            \PYG{n}{delta} \PYG{o}{=} \PYG{n}{d1} \PYG{o}{/} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{level}\PYG{p}{)}
             \PYG{n}{delta1} \PYG{o}{=} \PYG{n}{delta} \PYG{o}{/} \PYG{l+m+mi}{2}
             \PYG{n}{x\PYGZus{}value} \PYG{o}{+=} \PYG{n}{delta1}
             \PYG{k}{for} \PYG{n}{value} \PYG{o+ow}{in} \PYG{n}{level}\PYG{p}{:}
@@ -126,29 +132,77 @@
                 \PYG{n}{x\PYGZus{}value} \PYG{o}{+=} \PYG{n}{delta}
             \PYG{n}{y\PYGZus{}value} \PYG{o}{+=} \PYG{n}{dy}
 
+        \PYG{n}{plt}\PYG{o}{.}\PYG{n}{text}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y\PYGZus{}value}\PYG{p}{,} \PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{lst}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{])[}\PYG{l+m+mi}{2}\PYG{p}{:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{:]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+        \PYG{n}{x\PYGZus{}value} \PYG{o}{=} \PYG{n}{x\PYGZus{}save}
+        \PYG{n}{delta} \PYG{o}{=} \PYG{n}{d1} \PYG{o}{/} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{lst}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{])}
+        \PYG{n}{d} \PYG{o}{=} \PYG{l+m+mf}{1.5} \PYG{k}{if} \PYG{n}{flag} \PYG{o}{==} \PYG{l+m+mi}{3} \PYG{k}{else} \PYG{l+m+mi}{2}
+        \PYG{n}{x\PYGZus{}value} \PYG{o}{+=} \PYG{n}{delta} \PYG{o}{/} \PYG{n}{d}
+        \PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n}{lst}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{]:}
+            \PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{([}\PYG{n}{x\PYGZus{}value}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{],} \PYG{p}{[}\PYG{n}{y\PYGZus{}value}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25}\PYG{p}{,} \PYG{n}{y\PYGZus{}value}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.03}\PYG{p}{],} \PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}black\PYGZsq{}}\PYG{p}{)}
+            \PYG{n}{x\PYGZus{}value} \PYG{o}{+=} \PYG{n}{delta}
+
+        \PYG{n}{x\PYGZus{}value} \PYG{o}{=} \PYG{n}{x\PYGZus{}save}
+        \PYG{n}{delta} \PYG{o}{=} \PYG{n}{d1} \PYG{o}{/} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{lst}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{])}
+        \PYG{n}{x\PYGZus{}value} \PYG{o}{+=} \PYG{n}{delta}
+        \PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n}{lst}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]:}
+            \PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{([}\PYG{n}{x\PYGZus{}value}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{],} \PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.03}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25}\PYG{p}{],} \PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}black\PYGZsq{}}\PYG{p}{)}
+            \PYG{n}{x\PYGZus{}value} \PYG{o}{+=} \PYG{n}{delta}
+        \PYG{n}{y\PYGZus{}value} \PYG{o}{=} \PYG{l+m+mf}{0.3}
+        \PYG{n}{current\PYGZus{}level} \PYG{o}{=} \PYG{l+m+mi}{2}
+        \PYG{k}{if} \PYG{n}{flag} \PYG{o}{==} \PYG{l+m+mi}{3}\PYG{p}{:}
+            \PYG{k}{if} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{lst}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{])} \PYG{o}{==} \PYG{l+m+mi}{2}\PYG{p}{:}
+                \PYG{k}{for} \PYG{n}{level} \PYG{o+ow}{in} \PYG{n}{lst}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{1}\PYG{p}{]:}
+                    \PYG{n}{x\PYGZus{}value} \PYG{o}{=} \PYG{n}{x\PYGZus{}save}
+                    \PYG{n}{delta} \PYG{o}{=} \PYG{l+m+mi}{90} \PYG{o}{/} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{level}\PYG{p}{)}
+                    \PYG{n}{delta1} \PYG{o}{=} \PYG{n}{delta} \PYG{o}{/} \PYG{l+m+mf}{1.5}
+                    \PYG{n}{x\PYGZus{}value} \PYG{o}{+=} \PYG{n}{delta1}
+                    \PYG{k}{for} \PYG{p}{(}\PYG{n}{subset}\PYG{p}{,} \PYG{n}{\PYGZus{}}\PYG{p}{)} \PYG{o+ow}{in} \PYG{n}{level}\PYG{p}{:}
+                        \PYG{n}{x\PYGZus{}value1} \PYG{o}{=} \PYG{n}{x\PYGZus{}save}
+                        \PYG{n}{delta\PYGZus{}value1} \PYG{o}{=} \PYG{l+m+mi}{90} \PYG{o}{/} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{lst}\PYG{p}{[}\PYG{n}{current\PYGZus{}level}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{])}
+                        \PYG{n}{delta1\PYGZus{}value1} \PYG{o}{=} \PYG{n}{delta\PYGZus{}value1} \PYG{o}{/} \PYG{l+m+mf}{1.5}
+                        \PYG{n}{x\PYGZus{}value1} \PYG{o}{+=} \PYG{n}{delta1\PYGZus{}value1}
+                        \PYG{k}{for} \PYG{p}{(}\PYG{n}{subset1}\PYG{p}{,} \PYG{n}{\PYGZus{}}\PYG{p}{)} \PYG{o+ow}{in} \PYG{n}{lst}\PYG{p}{[}\PYG{n}{current\PYGZus{}level}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]:}
+                            \PYG{k}{if} \PYG{n}{subset1}\PYG{o}{.}\PYG{n}{intersection}\PYG{p}{(}\PYG{n}{subset}\PYG{p}{):}
+                                \PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{([}\PYG{n}{x\PYGZus{}value1} \PYG{o}{+} \PYG{l+m+mf}{0.3}\PYG{p}{,} \PYG{n}{x\PYGZus{}value} \PYG{o}{+} \PYG{l+m+mf}{0.3}\PYG{p}{],} \PYG{p}{[}\PYG{n}{y\PYGZus{}value} \PYG{o}{\PYGZhy{}} \PYG{n}{dy} \PYG{o}{+} \PYG{l+m+mf}{0.08}\PYG{p}{,} \PYG{n}{y\PYGZus{}value} \PYG{o}{\PYGZhy{}} \PYG{l+m+mf}{0.03}\PYG{p}{],}
+                                         \PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}black\PYGZsq{}}\PYG{p}{)}
+                            \PYG{n}{x\PYGZus{}value1} \PYG{o}{+=} \PYG{n}{delta\PYGZus{}value1}
+                        \PYG{n}{x\PYGZus{}value} \PYG{o}{+=} \PYG{n}{delta}
+                    \PYG{n}{y\PYGZus{}value} \PYG{o}{+=} \PYG{n}{dy}
+                    \PYG{n}{current\PYGZus{}level} \PYG{o}{+=} \PYG{l+m+mi}{1}
+        \PYG{k}{else}\PYG{p}{:}
+            \PYG{k}{for} \PYG{n}{level} \PYG{o+ow}{in} \PYG{n}{lst}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{1}\PYG{p}{]:}
+                \PYG{n}{x\PYGZus{}value} \PYG{o}{=} \PYG{n}{x\PYGZus{}save}
+                \PYG{n}{delta} \PYG{o}{=} \PYG{l+m+mi}{90} \PYG{o}{/} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{level}\PYG{p}{)}
+                \PYG{n}{delta1} \PYG{o}{=} \PYG{n}{delta} \PYG{o}{/} \PYG{l+m+mf}{1.5}
+                \PYG{n}{x\PYGZus{}value} \PYG{o}{+=} \PYG{n}{delta1}
+                \PYG{k}{for} \PYG{n}{subset} \PYG{o+ow}{in} \PYG{n}{level}\PYG{p}{:}
+                    \PYG{n}{x\PYGZus{}value1} \PYG{o}{=} \PYG{n}{x\PYGZus{}save}
+                    \PYG{n}{delta\PYGZus{}value1} \PYG{o}{=} \PYG{l+m+mi}{90} \PYG{o}{/} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{lst}\PYG{p}{[}\PYG{n}{current\PYGZus{}level}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{])}
+                    \PYG{n}{delta1\PYGZus{}value1} \PYG{o}{=} \PYG{n}{delta\PYGZus{}value1} \PYG{o}{/} \PYG{l+m+mf}{1.5}
+                    \PYG{n}{x\PYGZus{}value1} \PYG{o}{+=} \PYG{n}{delta1\PYGZus{}value1}
+                    \PYG{k}{for} \PYG{n}{subset1} \PYG{o+ow}{in} \PYG{n}{lst}\PYG{p}{[}\PYG{n}{current\PYGZus{}level}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]:}
+                        \PYG{k}{if} \PYG{n}{subset1}\PYG{o}{.}\PYG{n}{intersection}\PYG{p}{(}\PYG{n}{subset}\PYG{p}{):}
+                            \PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{([}\PYG{n}{x\PYGZus{}value1}\PYG{p}{,} \PYG{n}{x\PYGZus{}value} \PYG{o}{\PYGZhy{}} \PYG{l+m+mf}{0.3}\PYG{p}{],} \PYG{p}{[}\PYG{n}{y\PYGZus{}value} \PYG{o}{\PYGZhy{}} \PYG{n}{dy} \PYG{o}{+} \PYG{l+m+mf}{0.08}\PYG{p}{,} \PYG{n}{y\PYGZus{}value} \PYG{o}{\PYGZhy{}} \PYG{l+m+mf}{0.03}\PYG{p}{],} \PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}black\PYGZsq{}}\PYG{p}{)}
+                        \PYG{n}{x\PYGZus{}value1} \PYG{o}{+=} \PYG{n}{delta\PYGZus{}value1}
+                    \PYG{n}{x\PYGZus{}value} \PYG{o}{+=} \PYG{n}{delta}
+                \PYG{n}{y\PYGZus{}value} \PYG{o}{+=} \PYG{n}{dy}
+                \PYG{n}{current\PYGZus{}level} \PYG{o}{+=} \PYG{l+m+mi}{1}
+
     \PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{()}
 
 
-\PYG{k}{def} \PYG{n+nf}{get\PYGZus{}levels\PYGZus{}list\PYGZus{}sets}\PYG{p}{(}\PYG{n}{sets}\PYG{p}{):}
+\PYG{k}{def} \PYG{n+nf}{get\PYGZus{}levels\PYGZus{}list\PYGZus{}sets}\PYG{p}{(}\PYG{n}{sets}\PYG{p}{,} \PYG{n}{g}\PYG{p}{,} \PYG{n}{flag}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{):}
     \PYG{n}{res} \PYG{o}{=} \PYG{p}{[[]} \PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{sets}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{])]}
+
     \PYG{k}{for} \PYG{n}{subset} \PYG{o+ow}{in} \PYG{n}{sets}\PYG{p}{:}
-        \PYG{n}{res}\PYG{p}{[}\PYG{n}{subset}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{subset}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])}
-    \PYG{k}{return} \PYG{n}{res}
-
-\PYG{n}{ls} \PYG{o}{=} \PYG{p}{[((\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{\PYGZcb{},} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}a\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}b\PYGZsq{}}\PYG{p}{\PYGZcb{}),} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{p}{[]),} \PYG{p}{((\PYGZob{}}\PYG{l+m+mi}{1}\PYG{p}{\PYGZcb{},} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}a\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}c\PYGZsq{}}\PYG{p}{\PYGZcb{}),} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{p}{[]),} \PYG{p}{((\PYGZob{}}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{\PYGZcb{},} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}d\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}b\PYGZsq{}}\PYG{p}{\PYGZcb{}),} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{p}{[]),} \PYG{p}{((\PYGZob{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{\PYGZcb{},} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}a\PYGZsq{}}\PYG{p}{\PYGZcb{}),} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{p}{[\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{\PYGZcb{},} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{1}\PYG{p}{\PYGZcb{}]),} \PYG{p}{((\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{\PYGZcb{},} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}b\PYGZsq{}}\PYG{p}{\PYGZcb{}),} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{p}{[\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{\PYGZcb{},} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{\PYGZcb{}])]}
-\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{get\PYGZus{}levels\PYGZus{}list\PYGZus{}sets}\PYG{p}{(}\PYG{n}{ls}\PYG{p}{))}
-\PYG{n}{visual}\PYG{p}{(}\PYG{n}{get\PYGZus{}levels\PYGZus{}list\PYGZus{}sets}\PYG{p}{(}\PYG{n}{ls}\PYG{p}{),} \PYG{l+m+mi}{3}\PYG{p}{)}
-\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}}
-\PYG{l+s+sd}{Примеры входных данных:}
-
-\PYG{l+s+sd}{visual([(1, 1, []), (2, 2, [1]), (3, 3, [2]), (4, 4, [3]), (5, 5, [4]), (6, 6, [5]), (7, 7, [6]), (8, 8, [7]),}
-\PYG{l+s+sd}{        (9, 9, [8]), (10, 10, [9]), (11, 11, [10]), (12, 12, [11])], True)}
-\PYG{l+s+sd}{        }
-\PYG{l+s+sd}{visual([(1, 1, []), (2, 2, [1]), (3, 3, [2]), (4, 4, [3]), (5, 5, [4]), (6, 6, [5]), (7, 7, [6])], True)}
-
-\PYG{l+s+sd}{visual([(1, 1, []), (2, 2, [1]), (3, 2, [1]), (5, 2, [1]), (6, 3, [2, 3]), (10, 3, [2, 5]), (15, 3, [3, 5]), }
-\PYG{l+s+sd}{         (30, 4, [6, 10, 15])])}
-
-\PYG{l+s+sd}{[((\PYGZsq{}\PYGZob{}a, b\PYGZcb{}\PYGZsq{}, \PYGZob{}2\PYGZcb{}), 1, []), ((\PYGZsq{}\PYGZob{}a, c\PYGZcb{}\PYGZsq{}, \PYGZob{}1\PYGZcb{}), 1, []), ((\PYGZsq{}\PYGZob{}b, d\PYGZcb{}\PYGZsq{}, \PYGZob{}3, 4\PYGZcb{}), 1, []), ((\PYGZsq{}\PYGZob{}a\PYGZcb{}\PYGZsq{}, \PYGZob{}1, 2\PYGZcb{}), 2, [\PYGZob{}2\PYGZcb{}, \PYGZob{}1\PYGZcb{}]), ((\PYGZsq{}\PYGZob{}b\PYGZcb{}\PYGZsq{}, \PYGZob{}2, 3, 4\PYGZcb{}), 2, [\PYGZob{}2\PYGZcb{}, \PYGZob{}3, 4\PYGZcb{}])]}
-\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+        \PYG{k}{if} \PYG{n}{flag}\PYG{p}{:}
+            \PYG{n}{res}\PYG{p}{[}\PYG{n}{subset}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{subset}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])}
+        \PYG{k}{else}\PYG{p}{:}
+            \PYG{n}{res}\PYG{p}{[}\PYG{n}{subset}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{subset}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{])}
+    \PYG{k}{if} \PYG{n}{flag}\PYG{p}{:}
+        \PYG{n}{res}\PYG{o}{.}\PYG{n}{insert}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}(}\PYG{l+s+se}{\PYGZbs{}u2205}\PYG{l+s+s1}{, M)\PYGZsq{}}\PYG{p}{])}
+    \PYG{k}{else}\PYG{p}{:}
+        \PYG{n}{res}\PYG{o}{.}\PYG{n}{insert}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}M\PYGZsq{}}\PYG{p}{])}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{res} \PYG{o}{+} \PYG{p}{[[}\PYG{n}{g}\PYG{p}{]])}
+    \PYG{k}{return} \PYG{n}{res} \PYG{o}{+} \PYG{p}{[[}\PYG{n}{g}\PYG{p}{]]}
 \end{Verbatim}

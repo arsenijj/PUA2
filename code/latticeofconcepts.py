@@ -90,36 +90,47 @@ def print_lattice_of_concepts(mat, attr):
             if value == value1 and not key == key1:
                 if min(key, key1) in lattice_of_concepts_save:
                     lattice_of_concepts_save.pop(min(key, key1))
-    print('Система замыканий: ', end='')
-    print_closure_system(list(lattice_of_concepts_save.values()))
-    print('Включения-исключения))): ')
-    print(intersections([(set(v), set(k.replace(',', ' ').split())) for k, v in lattice_of_concepts_save.items()]))
 
-    # import hasse_visualization as hs
-    # hs.visual(res)
-    print('Решетка концептов C(K) состоит из элементов: ', end='')
-    for key, value in lattice_of_concepts_save.items():
-        value = list(value)
-        print('({', end='')
-        print(*value, sep=',', end='},')
-        print('{' + key + '}', end='), ')
+    import hasse_visualization as hs
+    lst = intersections([(set(v), set(sorted(k.replace(',', ' ').split()))) for k, v in lattice_of_concepts_save.items()])
+    print('Вы хотите получить систему замыканий и ее диаграмму Хассе? Да (1) или Нет (0)')
+    yes_or_no = int(input())
+    if yes_or_no:
+        print('Система замыканий: ', end='')
+        print_closure_system(list(lattice_of_concepts_save.values()))
+        print('Вы хотите получить диаграмму Хассе?')
+        yes_or_no = int(input())
+        if yes_or_no:
+            hs.visual(hs.get_levels_list_sets(lst, 'G', False), 4)
+    print('Вы хотите получить представителей решетки концептов и ее диаграмму Хассе? Да (1) или Нет (0)')
+    yes_or_no = int(input())
+    if yes_or_no:
+        print('Решетка концептов C(K) состоит из элементов: ', end='')
+        for key, value in lattice_of_concepts_save.items():
+            value = list(value)
+            print('({', end='')
+            print(*value, sep=',', end='},')
+            print('{' + key + '}', end='), ')
 
-    print(g, end=', ')
-    print('(\u2205, M)')
+        print(g, end=', ')
+        print('(\u2205, M)')
+        print('Вы хотите получить диаграмму Хассе?')
+        yes_or_no = int(input())
+        if yes_or_no:
+            hs.visual(hs.get_levels_list_sets(lst, str(g), True), 3)
 
 
 def main():
     print('Введите множество объектов')
-    # obj = [int(value) for value in input().split()]
-    obj = [1, 2, 3, 4]
+    obj = [int(value) for value in input().split()]
+    # obj = [1, 2, 3, 4]
     print('Введите множество атрибутов')
-    # attr = input().split()
-    attr = ['a', 'b', 'c', 'd']
+    attr = input().split()
+    # attr = ['a', 'b', 'c', 'd']
     obj, attr = make_nums_obj_attr(obj, attr)
-
-    # mat = get_matrix(len(attr))
+    mat = get_matrix(len(attr))
     # mat = [[0, 1, 0, 1], [0, 1, 1, 0], [1, 0, 1, 0], [0, 0, 1, 1]]
-    mat = [[1, 0, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 1]]
+    # mat = [[1, 0, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 1]]
     print_matrix(mat, obj)
     print_lattice_of_concepts(mat, attr)
 

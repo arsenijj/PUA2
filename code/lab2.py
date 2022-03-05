@@ -115,7 +115,7 @@ def hasse_greater_eq(nums):
 
 def hasse_division(dividers_num):
     hasse_list = []
-    sl = {key: 1 for i, key in enumerate(dividers_num)}
+    sl = {key: 1 for _, key in enumerate(dividers_num)}
 
     for number in dividers_num[1:]:
         for divider in dividers_num[:dividers_num.index(number)]:
@@ -281,17 +281,17 @@ if yes_or_no:
     print('Вы хотите получить диаграмму Хассе? Да(1) или Нет(0)')
     yes_or_no = int(input())
     if yes_or_no:
-        import hasse_visualization as hv
+        import hassevisualization as hv
         if order_type == 1:
-            hv.visual(res, True)
+            hv.visual(res, 2)
         else:
-            hv.visual(res)
+            hv.visual(res, 1)
     print(res)
 
 print('Вы хотите получить элементы решетки концептов C(K)? Да (1) или Нет (0)')
 yes_or_no = int(input())
 if yes_or_no:
-    import lattice_of_concepts as lc
+    import latticeofconcepts as lc
     lc.main()
 '''
 Примеры входных данных для 1-ой части работы:
@@ -338,6 +338,7 @@ if yes_or_no:
 1
 
 Пример входных данных для 3-ей части работы:
+
 1 2 3 4
 
 a b c d
@@ -346,4 +347,9 @@ a b c d
 1 1 0 0
 0 1 0 1
 0 1 0 1
+
+0 1 0 1
+0 1 1 0
+1 0 1 0 
+0 0 1 1
 '''

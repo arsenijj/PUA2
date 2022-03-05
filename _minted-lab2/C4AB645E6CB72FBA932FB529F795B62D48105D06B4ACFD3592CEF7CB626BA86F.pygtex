@@ -116,7 +116,7 @@
 
 \PYG{k}{def} \PYG{n+nf}{hasse\PYGZus{}division}\PYG{p}{(}\PYG{n}{dividers\PYGZus{}num}\PYG{p}{):}
     \PYG{n}{hasse\PYGZus{}list} \PYG{o}{=} \PYG{p}{[]}
-    \PYG{n}{sl} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{n}{key}\PYG{p}{:} \PYG{l+m+mi}{1} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{key} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{dividers\PYGZus{}num}\PYG{p}{)\PYGZcb{}}
+    \PYG{n}{sl} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{n}{key}\PYG{p}{:} \PYG{l+m+mi}{1} \PYG{k}{for} \PYG{n}{\PYGZus{}}\PYG{p}{,} \PYG{n}{key} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{dividers\PYGZus{}num}\PYG{p}{)\PYGZcb{}}
 
     \PYG{k}{for} \PYG{n}{number} \PYG{o+ow}{in} \PYG{n}{dividers\PYGZus{}num}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{:]:}
         \PYG{k}{for} \PYG{n}{divider} \PYG{o+ow}{in} \PYG{n}{dividers\PYGZus{}num}\PYG{p}{[:}\PYG{n}{dividers\PYGZus{}num}\PYG{o}{.}\PYG{n}{index}\PYG{p}{(}\PYG{n}{number}\PYG{p}{)]:}
@@ -282,17 +282,17 @@
     \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Вы хотите получить диаграмму Хассе? Да(1) или Нет(0)\PYGZsq{}}\PYG{p}{)}
     \PYG{n}{yes\PYGZus{}or\PYGZus{}no} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n+nb}{input}\PYG{p}{())}
     \PYG{k}{if} \PYG{n}{yes\PYGZus{}or\PYGZus{}no}\PYG{p}{:}
-        \PYG{k+kn}{import} \PYG{n+nn}{hasse\PYGZus{}visualization} \PYG{k}{as} \PYG{n+nn}{hv}
+        \PYG{k+kn}{import} \PYG{n+nn}{hassevisualization} \PYG{k}{as} \PYG{n+nn}{hv}
         \PYG{k}{if} \PYG{n}{order\PYGZus{}type} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{:}
-            \PYG{n}{hv}\PYG{o}{.}\PYG{n}{visual}\PYG{p}{(}\PYG{n}{res}\PYG{p}{,} \PYG{k+kc}{True}\PYG{p}{)}
+            \PYG{n}{hv}\PYG{o}{.}\PYG{n}{visual}\PYG{p}{(}\PYG{n}{res}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}
         \PYG{k}{else}\PYG{p}{:}
-            \PYG{n}{hv}\PYG{o}{.}\PYG{n}{visual}\PYG{p}{(}\PYG{n}{res}\PYG{p}{)}
+            \PYG{n}{hv}\PYG{o}{.}\PYG{n}{visual}\PYG{p}{(}\PYG{n}{res}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}
     \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{res}\PYG{p}{)}
 
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Вы хотите получить элементы решетки концептов C(K)? Да (1) или Нет (0)\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{yes\PYGZus{}or\PYGZus{}no} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n+nb}{input}\PYG{p}{())}
 \PYG{k}{if} \PYG{n}{yes\PYGZus{}or\PYGZus{}no}\PYG{p}{:}
-    \PYG{k+kn}{import} \PYG{n+nn}{lattice\PYGZus{}of\PYGZus{}concepts} \PYG{k}{as} \PYG{n+nn}{lc}
+    \PYG{k+kn}{import} \PYG{n+nn}{latticeofconcepts} \PYG{k}{as} \PYG{n+nn}{lc}
     \PYG{n}{lc}\PYG{o}{.}\PYG{n}{main}\PYG{p}{()}
 \PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}}
 \PYG{l+s+sd}{Примеры входных данных для 1\PYGZhy{}ой части работы:}
@@ -339,6 +339,7 @@
 \PYG{l+s+sd}{1}
 
 \PYG{l+s+sd}{Пример входных данных для 3\PYGZhy{}ей части работы:}
+
 \PYG{l+s+sd}{1 2 3 4}
 
 \PYG{l+s+sd}{a b c d}
@@ -347,5 +348,10 @@
 \PYG{l+s+sd}{1 1 0 0}
 \PYG{l+s+sd}{0 1 0 1}
 \PYG{l+s+sd}{0 1 0 1}
+
+\PYG{l+s+sd}{0 1 0 1}
+\PYG{l+s+sd}{0 1 1 0}
+\PYG{l+s+sd}{1 0 1 0 }
+\PYG{l+s+sd}{0 0 1 1}
 \PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}}
 \end{Verbatim}

@@ -91,36 +91,47 @@
             \PYG{k}{if} \PYG{n}{value} \PYG{o}{==} \PYG{n}{value1} \PYG{o+ow}{and} \PYG{o+ow}{not} \PYG{n}{key} \PYG{o}{==} \PYG{n}{key1}\PYG{p}{:}
                 \PYG{k}{if} \PYG{n+nb}{min}\PYG{p}{(}\PYG{n}{key}\PYG{p}{,} \PYG{n}{key1}\PYG{p}{)} \PYG{o+ow}{in} \PYG{n}{lattice\PYGZus{}of\PYGZus{}concepts\PYGZus{}save}\PYG{p}{:}
                     \PYG{n}{lattice\PYGZus{}of\PYGZus{}concepts\PYGZus{}save}\PYG{o}{.}\PYG{n}{pop}\PYG{p}{(}\PYG{n+nb}{min}\PYG{p}{(}\PYG{n}{key}\PYG{p}{,} \PYG{n}{key1}\PYG{p}{))}
-    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Система замыканий: \PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{)}
-    \PYG{n}{print\PYGZus{}closure\PYGZus{}system}\PYG{p}{(}\PYG{n+nb}{list}\PYG{p}{(}\PYG{n}{lattice\PYGZus{}of\PYGZus{}concepts\PYGZus{}save}\PYG{o}{.}\PYG{n}{values}\PYG{p}{()))}
-    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Включения\PYGZhy{}исключения))): \PYGZsq{}}\PYG{p}{)}
-    \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{intersections}\PYG{p}{([(}\PYG{n+nb}{set}\PYG{p}{(}\PYG{n}{v}\PYG{p}{),} \PYG{n+nb}{set}\PYG{p}{(}\PYG{n}{k}\PYG{o}{.}\PYG{n}{replace}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{},\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{} \PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{split}\PYG{p}{()))} \PYG{k}{for} \PYG{n}{k}\PYG{p}{,} \PYG{n}{v} \PYG{o+ow}{in} \PYG{n}{lattice\PYGZus{}of\PYGZus{}concepts\PYGZus{}save}\PYG{o}{.}\PYG{n}{items}\PYG{p}{()]))}
 
-    \PYG{c+c1}{\PYGZsh{} import hasse\PYGZus{}visualization as hs}
-    \PYG{c+c1}{\PYGZsh{} hs.visual(res)}
-    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Решетка концептов C(K) состоит из элементов: \PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{)}
-    \PYG{k}{for} \PYG{n}{key}\PYG{p}{,} \PYG{n}{value} \PYG{o+ow}{in} \PYG{n}{lattice\PYGZus{}of\PYGZus{}concepts\PYGZus{}save}\PYG{o}{.}\PYG{n}{items}\PYG{p}{():}
-        \PYG{n}{value} \PYG{o}{=} \PYG{n+nb}{list}\PYG{p}{(}\PYG{n}{value}\PYG{p}{)}
-        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}(\PYGZob{}\PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{)}
-        \PYG{n+nb}{print}\PYG{p}{(}\PYG{o}{*}\PYG{n}{value}\PYG{p}{,} \PYG{n}{sep}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{},\PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZcb{},\PYGZsq{}}\PYG{p}{)}
-        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}\PYGZob{}\PYGZsq{}} \PYG{o}{+} \PYG{n}{key} \PYG{o}{+} \PYG{l+s+s1}{\PYGZsq{}\PYGZcb{}\PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}), \PYGZsq{}}\PYG{p}{)}
+    \PYG{k+kn}{import} \PYG{n+nn}{hasse\PYGZus{}visualization} \PYG{k}{as} \PYG{n+nn}{hs}
+    \PYG{n}{lst} \PYG{o}{=} \PYG{n}{intersections}\PYG{p}{([(}\PYG{n+nb}{set}\PYG{p}{(}\PYG{n}{v}\PYG{p}{),} \PYG{n+nb}{set}\PYG{p}{(}\PYG{n+nb}{sorted}\PYG{p}{(}\PYG{n}{k}\PYG{o}{.}\PYG{n}{replace}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{},\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{} \PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{split}\PYG{p}{())))} \PYG{k}{for} \PYG{n}{k}\PYG{p}{,} \PYG{n}{v} \PYG{o+ow}{in} \PYG{n}{lattice\PYGZus{}of\PYGZus{}concepts\PYGZus{}save}\PYG{o}{.}\PYG{n}{items}\PYG{p}{()])}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Вы хотите получить систему замыканий и ее диаграмму Хассе? Да (1) или Нет (0)\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{yes\PYGZus{}or\PYGZus{}no} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n+nb}{input}\PYG{p}{())}
+    \PYG{k}{if} \PYG{n}{yes\PYGZus{}or\PYGZus{}no}\PYG{p}{:}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Система замыканий: \PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{)}
+        \PYG{n}{print\PYGZus{}closure\PYGZus{}system}\PYG{p}{(}\PYG{n+nb}{list}\PYG{p}{(}\PYG{n}{lattice\PYGZus{}of\PYGZus{}concepts\PYGZus{}save}\PYG{o}{.}\PYG{n}{values}\PYG{p}{()))}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Вы хотите получить диаграмму Хассе?\PYGZsq{}}\PYG{p}{)}
+        \PYG{n}{yes\PYGZus{}or\PYGZus{}no} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n+nb}{input}\PYG{p}{())}
+        \PYG{k}{if} \PYG{n}{yes\PYGZus{}or\PYGZus{}no}\PYG{p}{:}
+            \PYG{n}{hs}\PYG{o}{.}\PYG{n}{visual}\PYG{p}{(}\PYG{n}{hs}\PYG{o}{.}\PYG{n}{get\PYGZus{}levels\PYGZus{}list\PYGZus{}sets}\PYG{p}{(}\PYG{n}{lst}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}G\PYGZsq{}}\PYG{p}{,} \PYG{k+kc}{False}\PYG{p}{),} \PYG{l+m+mi}{4}\PYG{p}{)}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Вы хотите получить представителей решетки концептов и ее диаграмму Хассе? Да (1) или Нет (0)\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{yes\PYGZus{}or\PYGZus{}no} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n+nb}{input}\PYG{p}{())}
+    \PYG{k}{if} \PYG{n}{yes\PYGZus{}or\PYGZus{}no}\PYG{p}{:}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Решетка концептов C(K) состоит из элементов: \PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{)}
+        \PYG{k}{for} \PYG{n}{key}\PYG{p}{,} \PYG{n}{value} \PYG{o+ow}{in} \PYG{n}{lattice\PYGZus{}of\PYGZus{}concepts\PYGZus{}save}\PYG{o}{.}\PYG{n}{items}\PYG{p}{():}
+            \PYG{n}{value} \PYG{o}{=} \PYG{n+nb}{list}\PYG{p}{(}\PYG{n}{value}\PYG{p}{)}
+            \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}(\PYGZob{}\PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{)}
+            \PYG{n+nb}{print}\PYG{p}{(}\PYG{o}{*}\PYG{n}{value}\PYG{p}{,} \PYG{n}{sep}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{},\PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZcb{},\PYGZsq{}}\PYG{p}{)}
+            \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}\PYGZob{}\PYGZsq{}} \PYG{o}{+} \PYG{n}{key} \PYG{o}{+} \PYG{l+s+s1}{\PYGZsq{}\PYGZcb{}\PYGZsq{}}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}), \PYGZsq{}}\PYG{p}{)}
 
-    \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{g}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}, \PYGZsq{}}\PYG{p}{)}
-    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}(}\PYG{l+s+se}{\PYGZbs{}u2205}\PYG{l+s+s1}{, M)\PYGZsq{}}\PYG{p}{)}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{g}\PYG{p}{,} \PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}, \PYGZsq{}}\PYG{p}{)}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}(}\PYG{l+s+se}{\PYGZbs{}u2205}\PYG{l+s+s1}{, M)\PYGZsq{}}\PYG{p}{)}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Вы хотите получить диаграмму Хассе?\PYGZsq{}}\PYG{p}{)}
+        \PYG{n}{yes\PYGZus{}or\PYGZus{}no} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n+nb}{input}\PYG{p}{())}
+        \PYG{k}{if} \PYG{n}{yes\PYGZus{}or\PYGZus{}no}\PYG{p}{:}
+            \PYG{n}{hs}\PYG{o}{.}\PYG{n}{visual}\PYG{p}{(}\PYG{n}{hs}\PYG{o}{.}\PYG{n}{get\PYGZus{}levels\PYGZus{}list\PYGZus{}sets}\PYG{p}{(}\PYG{n}{lst}\PYG{p}{,} \PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{g}\PYG{p}{),} \PYG{k+kc}{True}\PYG{p}{),} \PYG{l+m+mi}{3}\PYG{p}{)}
 
 
 \PYG{k}{def} \PYG{n+nf}{main}\PYG{p}{():}
     \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Введите множество объектов\PYGZsq{}}\PYG{p}{)}
-    \PYG{c+c1}{\PYGZsh{} obj = [int(value) for value in input().split()]}
-    \PYG{n}{obj} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{]}
+    \PYG{n}{obj} \PYG{o}{=} \PYG{p}{[}\PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{value}\PYG{p}{)} \PYG{k}{for} \PYG{n}{value} \PYG{o+ow}{in} \PYG{n+nb}{input}\PYG{p}{()}\PYG{o}{.}\PYG{n}{split}\PYG{p}{()]}
+    \PYG{c+c1}{\PYGZsh{} obj = [1, 2, 3, 4]}
     \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Введите множество атрибутов\PYGZsq{}}\PYG{p}{)}
-    \PYG{c+c1}{\PYGZsh{} attr = input().split()}
-    \PYG{n}{attr} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}a\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}b\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}c\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}d\PYGZsq{}}\PYG{p}{]}
+    \PYG{n}{attr} \PYG{o}{=} \PYG{n+nb}{input}\PYG{p}{()}\PYG{o}{.}\PYG{n}{split}\PYG{p}{()}
+    \PYG{c+c1}{\PYGZsh{} attr = [\PYGZsq{}a\PYGZsq{}, \PYGZsq{}b\PYGZsq{}, \PYGZsq{}c\PYGZsq{}, \PYGZsq{}d\PYGZsq{}]}
     \PYG{n}{obj}\PYG{p}{,} \PYG{n}{attr} \PYG{o}{=} \PYG{n}{make\PYGZus{}nums\PYGZus{}obj\PYGZus{}attr}\PYG{p}{(}\PYG{n}{obj}\PYG{p}{,} \PYG{n}{attr}\PYG{p}{)}
-
-    \PYG{c+c1}{\PYGZsh{} mat = get\PYGZus{}matrix(len(attr))}
+    \PYG{n}{mat} \PYG{o}{=} \PYG{n}{get\PYGZus{}matrix}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{attr}\PYG{p}{))}
     \PYG{c+c1}{\PYGZsh{} mat = [[0, 1, 0, 1], [0, 1, 1, 0], [1, 0, 1, 0], [0, 0, 1, 1]]}
-    \PYG{n}{mat} \PYG{o}{=} \PYG{p}{[[}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{],} \PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{],} \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{],} \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]]}
+    \PYG{c+c1}{\PYGZsh{} mat = [[1, 0, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 1]]}
     \PYG{n}{print\PYGZus{}matrix}\PYG{p}{(}\PYG{n}{mat}\PYG{p}{,} \PYG{n}{obj}\PYG{p}{)}
     \PYG{n}{print\PYGZus{}lattice\PYGZus{}of\PYGZus{}concepts}\PYG{p}{(}\PYG{n}{mat}\PYG{p}{,} \PYG{n}{attr}\PYG{p}{)}
 

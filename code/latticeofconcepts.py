@@ -44,12 +44,11 @@ def get_matrix(size):
     return [[int(value) for value in input().split()] for _ in range(size)]
 
 
-def print_matrix(mat, obj):
+def print_matrix(mat, obj, attr):
     print('  ', end='')
-    print(*obj)
-    symbols = list(obj.keys())
+    print(*attr)
     for i in range(len(mat)):
-        print(symbols[i], end=' ')
+        print(obj[i], end=' ')
         print(*mat[i])
     print('\n')
 
@@ -131,7 +130,7 @@ def main():
     mat = get_matrix(len(attr))
     # mat = [[0, 1, 0, 1], [0, 1, 1, 0], [1, 0, 1, 0], [0, 0, 1, 1]]
     # mat = [[1, 0, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 1]]
-    print_matrix(mat, obj)
+    print_matrix(mat, list(obj.keys()), list(attr.keys()))
     print_lattice_of_concepts(mat, attr)
 
 

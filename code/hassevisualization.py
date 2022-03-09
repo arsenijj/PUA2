@@ -143,8 +143,11 @@ def visual(lst, flag):
         x_value = x_save
         delta = d1 / len(lst[1])
         x_value += delta
-        for _ in lst[1]:
-            plt.plot([x_value, 0], [-0.03, -0.25], color='black')
+        for i in lst[1]:
+            ddx = 0
+            if len(i) < 7:
+                ddx = delta / 2
+            plt.plot([x_value - ddx, 0], [-0.03, -0.25], color='black')
             x_value += delta
         y_value = 0.3
         current_level = 2
